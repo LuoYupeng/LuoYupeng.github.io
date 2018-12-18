@@ -239,6 +239,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/JS的数据类型转换/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/JS的数据类型转换/" itemprop="url">JS的数据类型转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T02:32:29+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JavaScript 是一种动态类型语言，变量没有类型限制，可以随时赋予任意值。</p>
+<h2 id="1数据类型的转换"><a href="#1数据类型的转换" class="headerlink" title="1数据类型的转换"></a>1数据类型的转换</h2><h3 id="1-1Number"><a href="#1-1Number" class="headerlink" title="1.1Number()"></a>1.1Number()</h3><p>使用<code>Number</code>函数，可以将任何类型的值转化为数值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="number">123</span>)     <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'123'</span>)  <span class="comment">//123</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'123abc'</span>) <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>使用parseInt()函数，可以将值转化为整数值，使用parseFloat()函数，可以将值转化为浮点数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'12.3'</span>)  <span class="comment">//12</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'12a3c'</span>) <span class="comment">//12</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1101</span>,<span class="number">2</span>) <span class="comment">//13,表示将二进制数字1101转换成十进制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'12.3'</span>) <span class="comment">//12.3</span></span><br></pre></td></tr></table></figure>
+<p>在实际使用中，很多选择这种方式进行转换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'123'</span> - <span class="number">0</span>  <span class="comment">//123</span></span><br><span class="line">+<span class="string">'123'</span>     <span class="comment">//123</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2Boolean"><a href="#1-2Boolean" class="headerlink" title="1.2Boolean()"></a>1.2Boolean()</h3><p>Boolean函数的转换规则相对简单，除以下五个值转换结果为<code>false</code>，其他都为<code>true</code>。</p>
+<blockquote>
+<p>undefined</p>
+<p>null</p>
+<p>-0 或+0</p>
+<p>NaN</p>
+<p>‘ ‘ (空字符串)</p>
+</blockquote>
+<p>所有对象，包括空对象的转换结果都是<code>true</code>。</p>
+<h3 id="1-3String"><a href="#1-3String" class="headerlink" title="1.3String()"></a>1.3String()</h3><p><code>String</code>函数可以将任意类型的值转化成字符串，转换规则如下。</p>
+<blockquote>
+<p>数值：转为相应的字符串。<br>字符串：转换后还是原来的值。<br>布尔值：true转为字符串”true”，false转为字符串”false”。<br>undefined：转为字符串”undefined”。<br>null：转为字符串”null”。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(&#123;<span class="attr">a</span>: <span class="number">1</span>&#125;) <span class="comment">// "[object Object]"</span></span><br><span class="line"><span class="built_in">String</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// "1,2,3"</span></span><br></pre></td></tr></table></figure>
+<p><code>number.toString()</code>函数可以使用不同进制把一个数字转换为字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">15.</span>toString() <span class="comment">//15，默认将数字15转为十进制后输出字符串</span></span><br><span class="line"><span class="number">15.</span>toString(<span class="number">2</span>) <span class="comment">//1111，将数字15转为二进制后输出字符串</span></span><br><span class="line"><span class="number">15.</span>toString(<span class="number">8</span>) <span class="comment">//17</span></span><br><span class="line"><span class="number">15.</span>toString(<span class="number">16</span>) <span class="comment">//f</span></span><br></pre></td></tr></table></figure>
+<p>在实际使用中，可以<code>+&#39;&#39;</code>来时实现转换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">''</span> <span class="comment">//'123'</span></span><br><span class="line"><span class="literal">true</span> + <span class="string">''</span> <span class="comment">// 'true'</span></span><br><span class="line">obj + <span class="string">''</span> <span class="comment">// '[obj obj]'</span></span><br><span class="line"><span class="number">123</span> + <span class="string">'12'</span> <span class="comment">// '12312'</span></span><br></pre></td></tr></table></figure>
+<h2 id="2各数据类型的内存存储"><a href="#2各数据类型的内存存储" class="headerlink" title="2各数据类型的内存存储"></a>2各数据类型的内存存储</h2><p>内存数据区存储分为Stack栈内存和Heap堆内存。</p>
+<p>简单类型的值储存在Stack栈内存里，数字以64位储存，字符串以16位储存。</p>
+<p>复杂类型将值存储在Heap堆内存，在Stack栈内存上记录其Heap堆内存地址。</p>
+<p>####2.1浅拷贝和深拷贝</p>
+<p>对于简单类型的数据来说，赋值就是深拷贝。<br>对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。深拷贝是对 Heap 内存进行完全的拷贝。</p>
+<p>下面有几道常见面试题，在解答时只需要画出简略内存图就可以明知答案。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="number">2</span></span><br><span class="line">a <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 二</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = &#123;<span class="attr">name</span>: <span class="string">'b'</span>&#125;</span><br><span class="line">a.name <span class="comment">//'a'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 三</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">a.name  <span class="comment">// 'b'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 四</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="literal">null</span></span><br><span class="line">a   <span class="comment">// &#123;name: 'a'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>参考文献：</p>
+<p><a href="https://javascript.ruanyifeng.com/grammar/conversion.html#toc5" target="_blank" rel="noopener">阮一峰的JavaScript教程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/JS里的数据类型/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1747,7 +1900,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
