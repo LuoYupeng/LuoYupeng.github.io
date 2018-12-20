@@ -81,7 +81,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="大吉大利，今晚学习">
-<meta property="og:url" content="http://yoursite.com/archives/2018/11/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="大吉大利，今晚学习">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -115,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/11/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 
 
 
-  <title>归档 | 大吉大利，今晚学习</title>
+  <title>大吉大利，今晚学习</title>
   
 
 
@@ -140,7 +140,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -223,72 +224,157 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
-
+  <section id="posts" class="posts-expand">
+    
       
 
-        
-        
-        
+  
 
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/二进制转换笔记/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/06/CSS居中的几种方式/" itemprop="url">
-              
-                <span itemprop="name">CSS居中的几种方式</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/22/二进制转换笔记/" itemprop="url">二进制转换笔记</a></h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-06T23:34:14+08:00" content="2018-11-06">
-          11-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T00:47:10+08:00">
+                2018-10-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>大多数计算机使用8位的块，或者字节 <em>(byte)</em> ，作为最小的可寻址的内存单位，而不是访问内存中单独的位。那么最基础的位模式的二进制与常见的十进制 <em>(Decimal)</em> ，十六进制 <em>(Hexadecimal)</em> 之间的转换总结如下。</p>
+<h1 id="二进制与十进制转换"><a href="#二进制与十进制转换" class="headerlink" title="二进制与十进制转换"></a>二进制与十进制转换</h1><h2 id="二进制转换为十进制"><a href="#二进制转换为十进制" class="headerlink" title="二进制转换为十进制"></a>二进制转换为十进制</h2><p>例如将1001012转换为十进制形式如下：</p>
+<blockquote>
+<p>1001012 = [ ( 1 ) × 25 ] + [ ( 0 ) × 24 ] + [ ( 0 ) × 23 ] + [ ( 1 ) × 22 ] + [ ( 0 ) × 2 1] + [ ( 1 ) × 20 ]<br>1001012 = [ 1 × 32 ] + [ 0 × 16 ] + [ 0 × 8 ] + [ 1 × 4 ] + [ 0 × 2 ] + [ 1 × 1 ]<br>1001012 = 3710</p>
+</blockquote>
+<h2 id="十进制转换为二进制"><a href="#十进制转换为二进制" class="headerlink" title="十进制转换为二进制"></a>十进制转换为二进制</h2><p>整数部分，把十进制转成二进制一直分解至商数为0。读余数从下读到上，即是二进制的整数部分数字。<br>例如将5910转换为二进制：</p>
+<blockquote>
+<p>59 ÷ 2 = 29 … 1<br>29 ÷ 2 = 14 … 1<br>14 ÷ 2 = 7 … 0<br>7 ÷ 2 = 3 … 1<br>3 ÷ 2 = 1 … 1<br>1 ÷ 2 = 0 … 1</p>
+</blockquote>
+<p>得到5910=1110112</p>
+<h1 id="十进制与十六进制转换"><a href="#十进制与十六进制转换" class="headerlink" title="十进制与十六进制转换"></a>十进制与十六进制转换</h1><p>十六进制在数学中是一种逢16进1的进位制，一般用数字0到9和字母A到F表示，其中A~F表示10~15。<br>十进制转十六进制依然采余数定理分解，例如将487710转成十六进制：</p>
+<blockquote>
+<p>4877÷16=304….13(D)<br>304÷16=19….0<br>19÷16=1….3<br>1÷16=0….1</p>
+</blockquote>
+<p>这样就计到487710=130D16</p>
+<h1 id="负数和浮点数的表示方法"><a href="#负数和浮点数的表示方法" class="headerlink" title="负数和浮点数的表示方法"></a>负数和浮点数的表示方法</h1><p>十进制的负数转换为二进制时，采用补码方法来表示。一个数字的补码就是将该数字作比特反码运算，再将结果加1。在补码系统中，一个负数就是用其对应正数的补码来表示。在8位的补码系统中，可以表示的最大正数为28-1-1 = 127，可以表示最小的负数为 -28-1 = -128。</p>
+<blockquote>
+<p>例如用有符号位8位二进制表示的数字5：<br><em>0000 0101 (5)</em><br>其最高比特为0，因为此数字为正数。用补码系统表示 -5，首先将5的二进制进行反相运算[1变为0，0变为1]：<br><em>1111 1010</em><br>目前的数字是数字5的反码，因此需要再加1，才是补码：<br><em>1111 1011 (-5)</em></p>
+</blockquote>
+<p>在计算机中，浮点数的存储格式，一般按照标准 IEEE 754。</p>
+<h1 id="采摘、参考文献："><a href="#采摘、参考文献：" class="headerlink" title="采摘、参考文献："></a>采摘、参考文献：</h1><ul>
+<li><a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5" target="_blank" rel="noopener">Wikipedia</a></li>
+<li><a href="https://www.cnblogs.com/gaizai/p/4233780.html" target="_blank" rel="noopener">二、八、十、十六进制转换（图解篇）</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
 
       
 
-    </div>
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
