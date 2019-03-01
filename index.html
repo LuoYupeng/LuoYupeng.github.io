@@ -239,6 +239,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/JS基础：Array/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/01/JS基础：Array/" itemprop="url">JS基础：Array</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-01T23:46:49+08:00">
+                2019-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数组是最简单的内存数据结构。JavaScript里也有数组类型，用于存储一系列同一种数据类型的值。</p>
+<h2 id="数组与伪数组"><a href="#数组与伪数组" class="headerlink" title="数组与伪数组"></a>数组与伪数组</h2><p>伪数组(<code>arrLike</code>)，是一个类似数组的对象。例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">obj = &#123;</span><br><span class="line">  <span class="number">0</span>:a,</span><br><span class="line">  <span class="number">1</span>:b,</span><br><span class="line">  <span class="number">2</span>:c,</span><br><span class="line">  length:<span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>function的<code>arguments</code>对象，还有<code>getElementsByTagName</code>、<code>ele.childNodes</code>等返回的<code>NodeList</code>对象，或者自定义的某些对象，这些都可以是伪数组。<br>数组跟数组一样按索引方式存储，具有<code>length</code>属性。但是伪数组与数组的最重要区别在于，伪数组的原型链中<strong>不包括</strong><code>Array.prototype</code>。</p>
+<p>伪数组转换成数组的方法有：</p>
+<ul>
+<li><p>遍历伪数组并加入一个空数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr =[]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>;i&lt; arrLike.length; i++)&#123;</span><br><span class="line">    arr.push(arrLike[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组的<code>slice()</code>方法</p>
+<p><code>Array.prototype.slice.call(arrLike)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> list1 = list(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ES6中的<code>Array.from()</code>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123;  </span><br><span class="line">  <span class="number">0</span>:<span class="string">"kk"</span>,  </span><br><span class="line">  <span class="number">1</span>:<span class="number">18</span>,  </span><br><span class="line">  <span class="number">2</span>:<span class="string">"文字文字"</span>, </span><br><span class="line">  length:<span class="number">3</span>  &#125;);  </span><br><span class="line"><span class="comment">//["lk", 12,"文字文字"]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="数组属性"><a href="#数组属性" class="headerlink" title="数组属性"></a>数组属性</h2><p>数组属性有<code>Array.length</code>；<code>get Array[]</code>；<code>Array.prototype</code></p>
+<h2 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h2><p>数组的操作方法比较多，详细可以查阅<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array#Properties" target="_blank" rel="noopener">MDN</a>。这里简要介绍几种常用的操作方法</p>
+<p>举例<code>var num = [1,2,3,4,5]</code></p>
+<h4 id="增删查的方法"><a href="#增删查的方法" class="headerlink" title="增删查的方法"></a>增删查的方法</h4><p>查：可以通过索引访问数组元素，如<code>num[1] //2</code>；</p>
+<p>增：<code>push</code>方法添加一个或者多个元素到数组末尾，如<code>num.push[7,8]</code>；</p>
+<p>​        <code>unshift</code>方法将数值直接插入数组的首位，如<code>num.unshift[-2,-1]</code> 。</p>
+<p>删： 删除数组最靠后的元素<code>pop()</code>；删除数组首位元素<code>shift()</code>；</p>
+<p>另外，<code>splice()</code>方法可以实现在任意位置添加或删除元素，例如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">num.splice(<span class="number">2</span>,<span class="number">2</span>) </span><br><span class="line"><span class="comment">//第一个参数表示要删除元素的索引值，第二个参数表示删除元素的个数</span></span><br><span class="line"><span class="comment">//num由[1,2,3,4,5]变成[1,2,5]</span></span><br><span class="line"></span><br><span class="line">num.splice(<span class="number">2</span>,<span class="number">0</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>)</span><br><span class="line"><span class="comment">//添加元素，所以第二个参数为了0；第三个元素以后，表示要添加到数组里的值</span></span><br><span class="line"><span class="comment">//num由[1,2,3,4,5]变成[1,2,7,8,9,3,4,5]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Array-prototype-forEach"><a href="#Array-prototype-forEach" class="headerlink" title="Array.prototype.forEach"></a>Array.prototype.forEach</h4><p><code>forEach()</code>方法对数组的每个元素执行一次提供的函数，用法<code>array.forEach(function(value,key){})</code>。需注意的是<code>forEach()</code>不会在迭代之前创建数组的副本，已删除的项不会被遍历到。如果已访问的元素在迭代时被删除了（例如使用 <code>shift()</code>），之后的元素将被跳过。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">forEach</span>(<span class="params">array,x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line">        x(array[i],i)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">forEach([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value,key)&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//a 0</span></span><br><span class="line"><span class="comment">//b 1</span></span><br><span class="line"><span class="comment">//c 2</span></span><br></pre></td></tr></table></figure>
+<p>####Array.prototype.sort()</p>
+<p><code>sort()</code>方法用原地算法对数组的元素进行排序，并返回数组。</p>
+<p><code>array.sort(function(x,y){return x - y})</code></p>
+<p><code>array.sort(function(x,y){return y -x})</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>]</span><br><span class="line"><span class="keyword">var</span> b =a.sort()<span class="comment">//b [1,2,3,4,5,6]</span></span><br><span class="line"><span class="comment">//a仍为[5,6,3,1,4,2]</span></span><br></pre></td></tr></table></figure>
+<h4 id="join-concat-map-filter-reduce"><a href="#join-concat-map-filter-reduce" class="headerlink" title=".join() .concat() .map() .filter() .reduce()"></a>.join() .concat() .map() .filter() .reduce()</h4><p><code>join()</code>方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">'a'</span>]</span><br><span class="line">a.join(<span class="string">'cc'</span>) <span class="comment">// '1cc2cca'</span></span><br><span class="line">a.join()     <span class="comment">//'1,2,a'</span></span><br></pre></td></tr></table></figure>
+<p><code>concat()</code>方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];b=[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">var</span> c = a.concat(b) <span class="comment">// [1,2,3,4,5,6]</span></span><br><span class="line"><span class="keyword">var</span> d = a.concat([]) <span class="comment">// d为新数组[1,2,3]与a不同</span></span><br></pre></td></tr></table></figure>
+<p><code>map()</code>方法用于遍历数组，操作并收集返回新的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.map(<span class="function"><span class="params">value</span> =&gt;</span> value*<span class="number">2</span>) <span class="comment">//[2,4,6],数组a不变</span></span><br></pre></td></tr></table></figure>
+<p><code>filter()</code>方法创建一个新数组, 其包含通过所提供函数实现的规则的所有元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">a.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">5</span></span><br><span class="line">&#125;) <span class="comment">//[5,6,7,8,9]</span></span><br></pre></td></tr></table></figure>
+<p><code>reduce()</code>方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.reduce(functiong(sum,n)&#123;</span><br><span class="line">         <span class="keyword">return</span> sum + n</span><br><span class="line">         &#125;,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">arr,n</span>)</span>&#123;</span><br><span class="line">    arr.push(n * <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;,[])</span><br><span class="line"><span class="comment">// [2,4,6]</span></span><br><span class="line"><span class="comment">//map()用redcue()表示</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计算所有奇数和</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">arr,n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr + n&#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;,<span class="number">0</span>)                         </span><br><span class="line"><span class="comment">//25</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">MDN—JavaScript的标准库Array</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/简述JS的原型与原型链/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1732,148 +1897,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/Git初使用笔记/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LuoYupeng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大吉大利，今晚学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/22/Git初使用笔记/" itemprop="url">Git初使用笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T00:53:34+08:00">
-                2018-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Git是一个分布式版本控制系统，最初是由林纳斯·托瓦兹创作。Github是一个基于Git的项目托管平台。</p>
-<h4 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h4><p>在Windows，Linux和Mac的安装方法各不相同。</p>
-<ul>
-<li>Windows上需要安装Git Bash，可直接从官网下载或者各镜像网站下载安装</li>
-<li>Linux只须运行 <code>sudo apt-get install git</code> 命令即可</li>
-<li><p>Mac上需要通过 <em>homebrew</em> 或者 <em>Xcode</em> 安装</p>
-<h4 id="Git的初使用"><a href="#Git的初使用" class="headerlink" title="Git的初使用"></a>Git的初使用</h4><p>在使用Git之前，我们需要先进行一些简单设置，目的是首先表明身份。</p>
-<blockquote>
-<p>git config –global user.name 你的英文名<br>git config –global user.email 你的邮箱<br>git config –global push.default matching<br>git config –global core.quotepath false<br>git config –global core.editor “vim” </p>
-</blockquote>
-<h5 id="Git初始的几个命令"><a href="#Git初始的几个命令" class="headerlink" title="Git初始的几个命令"></a>Git初始的几个命令</h5><p><code>git init</code><br><img src="/2018/10/22/Git初使用笔记/p1.png" alt=""><br>   这个命令是用初始化一个空的Git仓库。同时在当前目录下多了一个<code>.git</code>目录，是用于跟踪管理版本库。在初次使用时，请忽略这个目录，不要修改它，避免把Git仓库破坏。<br>   <code>git add</code><br>   <img src="/2018/10/22/Git初使用笔记/p2.png" alt=""><br>   这个命令是告诉Git把变动添加到“暂存区”。但是请注意命令后面要有文件或者目录。当正确执行这个明令后，不会有任何显示。<br>   <code>git commit -v</code><br>   <img src="/2018/10/22/Git初使用笔记/p3.png" alt=""><br>   这个命令是提交暂存区到仓库区。同时<code>git commit</code>可以接不同参数。</p>
-<blockquote>
-<p><code>-v</code>表示提交时显示所有diff信息，即两个文本文件的差异<br><code>-m [message]</code>用来正式提交变动，提交至 .git 仓库<br><code>-a</code> 表示提交工作区自上次commit之后的变化，直接到仓库区，不建议采用这种提交，因为会导致以后的回溯出现混乱</p>
-</blockquote>
-</li>
-</ul>
-<p>当然了，Git还有很多很重要的内容需要学习，<strong>Fighting!</strong></p>
-<p>采摘|参考文献：</p>
-<ul>
-<li><a href="http://blog.jobbole.com/111187/" target="_blank" rel="noopener">大白话解释 Git 和 GitHub</a></li>
-<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰的Git教程</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">常用 Git 命令清单</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1924,7 +1947,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1974,7 +1997,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
