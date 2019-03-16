@@ -239,6 +239,463 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/HTTP请求和响应入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/26/HTTP请求和响应入门/" itemprop="url">HTTP请求和响应入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T01:31:41+08:00">
+                2018-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>HTTP_(HyperText Transfer Protocol)_ ，译为超文本传输协议，目前常用HTTP协议版本为HTTP/1.1和HTTP/1.2。<br>当用户在浏览器输入网址点击回车后，大致发生了以下流程：<br><img src="https://i.loli.net/2018/11/28/5bfd9061f3a44.png" alt="20181128024212.png" title="20181128024212.png"><br>网页地址URL格式是: </p>
+<blockquote>
+<p>_协议_ :// <em>域名端口</em> / _路径_?<em>查询参数</em>/_锚点_  </p>
+</blockquote>
+<h1 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h1><p>HTTP请求报文分为三个部分，报文首部/空行/报文主体。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>结构</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>请求行</td>
+<td>方法 路径 协议/版本号</td>
+<td>GET /s?wd=123 HTTP/1.1</td>
+</tr>
+<tr>
+<td>各种首部字段</td>
+<td>key:value</td>
+<td>Connection: keep-alive <br> Cookie: xxx</td>
+</tr>
+<tr>
+<td>空行</td>
+<td>空行CR+LF</td>
+<td>空行</td>
+</tr>
+<tr>
+<td>报文主体</td>
+<td>应被发送的数据</td>
+<td>例如登录密码</td>
+</tr>
+</tbody>
+</table>
+<p>（路径包含查询参数，但不包含锚点）<br>在Chrome开发者工具中，Network下可以查看请求报文首部和响应报文首部。<br><img src="https://i.loli.net/2018/11/28/5bfd90683aac8.png" alt="20181128024239.png" title="20181128024239.png" width="50%" height="50%"><br>点击<code>view source</code>可以得到如下显示<br><img src="https://i.loli.net/2018/11/28/5bfd90686cde5.png" alt="20181128024146.png" title="20181128024146.png" width="50%" height="50%"></p>
+<h2 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h2><p>HTTP的请求动作方法有以下几种</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>获取资源</td>
+<td>POST</td>
+<td>传输实体</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>传输文件</td>
+<td>HEAD</td>
+<td>获得报文首部</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除文件</td>
+<td>OPTIONS</td>
+<td>询问支持的方法</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>追踪路径</td>
+<td>CONNECT</td>
+<td>要求用隧道协议连接代理</td>
+</tr>
+<tr>
+<td>LINK</td>
+<td>建立和资源之间的联系</td>
+<td>UNLINK</td>
+<td>断开连接关系</td>
+</tr>
+</tbody>
+</table>
+<h1 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h1><p>在上文可以知道，HTTP响应也可以在Chrome开发者工具获取，HTTP响应报文同样分为三个部分，报文首部/空行/报文主体。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>结构</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态行</td>
+<td>协议/版本号 状态码 解释短语</td>
+<td>HTTP/1.1 200 OK</td>
+</tr>
+<tr>
+<td>各种首部字段</td>
+<td>key:value</td>
+<td>Content-Type: text/html <br> Content-Length: 362</td>
+</tr>
+<tr>
+<td>空行</td>
+<td>空行CR+LF</td>
+<td>空行</td>
+</tr>
+<tr>
+<td>报文主体</td>
+<td>要下载的内容</td>
+<td>例如HTML</td>
+</tr>
+</tbody>
+</table>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>状态码的职责是当客户端向服务端发送请求时，描述返回的请求结果。借助状态码，用户可以知道服务器端是正常处理了需求，还是出现了错误。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>类别</th>
+<th>原因短语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1xx</td>
+<td>Information（信息性状态码）</td>
+<td>接收的请求正在处理</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td>Success（成功状态码）</td>
+<td>请求正常完成</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>Redirection（重定向状态码）</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>Client Error（客户端错误状态码）</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Server Error（服务器错误状态码）</td>
+<td>服务器处理请求出错</td>
+</tr>
+</tbody>
+</table>
+<p>例如：200表示成功；301永久重定向；302临时重定向；403客户端不允许访问；404服务器没有请求的资源；500服务器内部错误。</p>
+<h1 id="curl命令"><a href="#curl命令" class="headerlink" title="curl命令"></a><code>curl</code>命令</h1><p>在浏览器上我们可以直接输入网址，但在命令行中，同样可以通过<code>curl</code>命令来完成动作。在官方文档对<code>curl</code>的解释是：<code>curl</code>是一种使用其中一种支持的协议从服务器传输数据或向服务器传输数据的工具，<code>curl</code>提供了大量有用的技巧，如代理支持，用户身份验证，FTP上传，HTTP发布，SSL连接，cookie，文件传输恢复等，功能的数量将使你的头旋脑转！</p>
+<blockquote>
+<p><code>curl</code>语法<br> curl  [options]  [URL…]</p>
+</blockquote>
+<blockquote>
+<p>curl -s -v -H “key: value” – “<a href="http://www.baidu.com&quot;" target="_blank" rel="noopener">www.baidu.com&quot;</a><br>-s:表示安静模式，不显示进度条；-v：表示显示请求报文和响应报文；-H “key：alue”：往首部字段添加key/alue</p>
+</blockquote>
+<blockquote>
+<p>curl -X POST -d “xxxx” -s -v -H “key: value” – “<a href="http://www.baidu.com&quot;" target="_blank" rel="noopener">www.baidu.com&quot;</a><br>-X POST:表示改变请求方法为POST（或者其他）； -d “xxxx”：表示上传xxxx</p>
+</blockquote>
+<p>在这篇文章中，还省略了同样重要复杂的首部字段，分别有通用首部、请求首部、响应首部、实体首部及其他首部字段。</p>
+<p>参考文献：</p>
+<ul>
+<li><a href="http://www.ituring.com.cn/book/1229" target="_blank" rel="noopener">图解HTTP</a></li>
+<li><p><a href="https://github.com/bailinlin/Awsome-Front-End-Xmind/issues/5" target="_blank" rel="noopener">精读《图解HTTP》</a></p>
+<p>  <strong>Fighting</strong></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/命令行初使用笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/23/命令行初使用笔记/" itemprop="url">命令行初使用笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T00:00:17+08:00">
+                2018-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>命令行是每一个开发者都会频繁使用的，与Windows图形界面所不同的是，命令行操作都是靠命令来执行的。下面列举了一些常用的一些命令，例如增删改查。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>全写</th>
+<th>缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建目录</td>
+<td>make directory</td>
+<td>mkdir</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>remove</td>
+<td>rm</td>
+</tr>
+<tr>
+<td>移动/重命名</td>
+<td>move</td>
+<td>mv</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>copy</td>
+<td>cp</td>
+</tr>
+<tr>
+<td>罗列</td>
+<td>list</td>
+<td>ls</td>
+</tr>
+<tr>
+<td>改变目录</td>
+<td>change directory</td>
+<td>cd</td>
+</tr>
+</tbody>
+</table>
+<p>有些命令后面可以增加参数，达到不同目的。例如<code>ls</code>，表示列出目录下内容，常用参数有<code>ls -a</code>,<code>ls -l</code>,<code>ls -la</code>。<code>ls -a</code>表示列出目录下所有内容，包括以<code>.</code>开头的文件。<code>ls -l</code>表示以长列表列出目录下内容，包括内容权限，用户，修改时间等。如图所示。<br><img src="/2018/10/23/命令行初使用笔记/1.png" width="50%" height="50%"></p>
+<p>在图片中，使用<code>touch</code>命令，touch为触摸意思，当touch的文件不存在时，会创建该文件。当文件存在时，touch会更新文件的修改时间，如上图红框时间不同。<br><code>mv</code>这个命令有移动/重命名意思，当不同路径时为移动，相同路径为重命名。</p>
+<blockquote>
+<p>#<code>mv 1.txt ./1/2/</code>操作为把<code>1.txt</code>从当前目录移动到<code>./1/2/</code>目录下；</p>
+<p>#<code>mv 1.txt 2.txt</code>操作为把<code>1.txt</code>重命名为<code>2.txt</code></p>
+</blockquote>
+<p><code>cat</code>这个命令操作为连接文件并在标准输出上打印。<br><img src="/2018/10/23/命令行初使用笔记/2.png" width="50%" height="50%"></p>
+<p>命令何其多，如果忘了某个命令可以Google。当看到某一个命令不知道为何意时，我们可以用<code>man +命令</code>来获得这个命令的相关参考手册，或者<code>tldr +命令</code>，<code>tldr</code>翻译是太长不读，可以通过<code>npm i -g tldr</code>安装这个工具。当然也可以通过<a href="https://explainshell.com/" target="_blank" rel="noopener">explainshell</a>这个网站来查找命令解释。<br><img src="/2018/10/23/命令行初使用笔记/3.png" width="50%" height="50%"><br>特别当解释还有疑惑时，可以点击红框内的<em>source manpages</em> ，可以跳转到官方手册页。</p>
+<p>命令行是常用常熟，不用惧怕一开始好像什么都不会，不会就用搜索引擎查找。<br><strong>Fighting!</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/Git初使用笔记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -561,7 +1018,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
