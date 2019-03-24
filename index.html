@@ -328,26 +328,26 @@
 <li><p><code>Comment</code>：注释</p>
 </li>
 <li><p><code>DocumentFragment</code>：文档的片段</p>
-<h1 id="Node接口操作"><a href="#Node接口操作" class="headerlink" title="Node接口操作"></a>Node接口操作</h1><p>所有DOM节点对象都继承了Node接口，这是 DOM 操作的基础。</p>
+</li>
+</ul>
+<p>所有DOM节点对象都继承了Node接口，这是 DOM 操作的基础。</p>
 <h2 id="Node接口的属性和方法"><a href="#Node接口的属性和方法" class="headerlink" title="Node接口的属性和方法"></a>Node接口的属性和方法</h2><p>对于DOM的操作，最主要归纳于四个字：<strong>增、删、改、查</strong>。</p>
 <p>首先是<strong>查:</strong></p>
 <p><code>Document.getElementsByClassName()</code>;//返回指定Class name的节点</p>
 <p><code>Document.getElementById()</code>;//返回指定ID的节点</p>
 <p><code>Document.querySelector()</code>;//接受一个 CSS 选择器作为参数，返回第一个匹配该选择器的元素节点</p>
 <p><code>Document.querySelectorAll()</code>;//返回一个<code>NodeList</code>对象，包含所有匹配给定选择器的节点。</p>
-</li>
-</ul>
-<p>  //两种方法获取的节点是有有区别的，<code>document.querySelectorAll</code>方法返回的是一个静态集合。DOM内部的变化，并不会实时反映在该方法的返回结果之中。</p>
-<p>  <img src="https://i.loli.net/2019/03/25/5c97d4dbe986e.png" width="600px" alt="getElementBy与querySelector区别.png" title="getElementBy与querySelector区别.png"></p>
-<p>  在得到相应Node节点时候， Node节点本身也有一些<strong>重要属性</strong>：</p>
-<p>  <code>nodeName</code>//返回节点类型,重要的返回的值有<code>大写的HTML元素名</code>, <code>#text</code>,<code>#document</code></p>
-<p>  <code>nodeType</code>//属性返回一个整数值，表示节点的类型。文档节点（document）：9，元素节点(element)：1；文本节点(text)：3</p>
-<p>  <code>nodeValue</code>//返回一个字符串，表示当前节点本身的文本值，只有文本节点（text）、注释节点（comment）和属性节点（attr）有返回结果，其他节点都返回null</p>
-<p>  <code>textContent</code>//属性自动忽略当前节点内部的 HTML 标签，返回所有文本内容。//而<code>innerText</code>在IE下会忽略隐藏(例如css,style)，同时也会重置写入。</p>
-<p>  兄弟关系：<code>Node.nextSibling</code>;<code>Node.previousSibling</code>//会获取到文本节点(例如回车)</p>
-<p>  父子关系：<code>node.parentNode</code>;<code>node.childNodes</code>;<code>node.firstChild</code>;<code>node.lastChild</code></p>
-<p>  其中<code>node.childNodes</code>属性返回一个伪数组的对象（<code>NodeList</code>集合）；伪数组内的值是动态变化的，回车也会充当文本体现出来。</p>
-<p>  <strong>Node方法</strong>：</p>
+<p>//两种方法获取的节点是有有区别的，<code>document.querySelectorAll</code>方法返回的是一个静态集合。DOM内部的变化，并不会实时反映在该方法的返回结果之中。</p>
+<p><img src="https://i.loli.net/2019/03/25/5c97d4dbe986e.png" width="600px" alt="getElementBy与querySelector区别.png" title="getElementBy与querySelector区别.png"></p>
+<p>在得到相应Node节点时候， Node节点本身也有一些<strong>重要属性</strong>：</p>
+<p><code>nodeName</code>//返回节点类型,重要的返回的值有<code>大写的HTML元素名</code>, <code>#text</code>,<code>#document</code></p>
+<p><code>nodeType</code>//属性返回一个整数值，表示节点的类型。文档节点（document）：9，元素节点(element)：1；文本节点(text)：3</p>
+<p><code>nodeValue</code>//返回一个字符串，表示当前节点本身的文本值，只有文本节点（text）、注释节点（comment）和属性节点（attr）有返回结果，其他节点都返回null</p>
+<p><code>textContent</code>//属性自动忽略当前节点内部的 HTML 标签，返回所有文本内容。//而<code>innerText</code>在IE下会忽略隐藏(例如css,style)，同时也会重置写入。</p>
+<p>兄弟关系：<code>Node.nextSibling</code>;<code>Node.previousSibling</code>//会获取到文本节点(例如回车)</p>
+<p>父子关系：<code>node.parentNode</code>;<code>node.childNodes</code>;<code>node.firstChild</code>;<code>node.lastChild</code></p>
+<p>其中<code>node.childNodes</code>属性返回一个伪数组的对象（<code>NodeList</code>集合）；伪数组内的值是动态变化的，回车也会充当文本体现出来。</p>
+<p><strong>Node方法</strong>：</p>
 <ul>
 <li><code>Node.appendChild()</code>//将其作为最后一个子节点，插入当前节点</li>
 <li><code>Node.hasChildNodes()</code>//返回一个布尔值，表示当前节点是否有子节点</li>
@@ -358,39 +358,36 @@
 <li><code>Node.contains()</code></li>
 <li><code>Node.isEqualNode()</code>//用于检查两个节点是否相等,指的是两个节点的类型相同、属性相同、子节点相同。</li>
 <li><code>Node.isSameNode()</code>//表示两个节点是否为同一个节点。</li>
-<li><p><code>Node.normalize()</code></p>
+<li><code>Node.normalize()</code></li>
+</ul>
 <h1 id="Document节点的属性和方法："><a href="#Document节点的属性和方法：" class="headerlink" title="Document节点的属性和方法："></a>Document节点的属性和方法：</h1><p>Document节点属性有：</p>
 <p><strong>document.hidden</strong>返回一个布尔值，表示当前页面是否可见。配合<strong>document.visibilityState</strong>(返回文档的可见状态)使用。</p>
 <p><strong>document.referrer</strong>表示当前文档的访问者来自哪里，可用于网站图片防盗链，流量，DDOS。</p>
-</li>
-</ul>
 <ul>
 <li><strong>document.characterSet</strong>；<strong>document.title</strong>；<strong>document.domain</strong>；<strong>document.styleSheets</strong>；<strong>document.scripts</strong>；<strong>document.plugins</strong></li>
 <li><strong>document.images</strong>;<strong>document.links</strong>;<strong>document.forms</strong>;</li>
-<li><p><strong>document.doctype</strong>;<strong>document.documentElement</strong>//返回HTML;<strong>document.body，document.head</strong>；<strong>document.scrollingElement</strong>；<strong>document.fullscreenElement</strong></p>
-<p>Document节点方法有：</p>
-<p>###DOM的<strong>增</strong>：</p>
-<p>Document.createElement() // 创建元素</p>
+<li><strong>document.doctype</strong>;<strong>document.documentElement</strong>//返回HTML;</li>
+<li><strong>document.body</strong>；<strong>document.head</strong>；<strong>document.scrollingElement</strong>；<strong>document.fullscreenElement</strong></li>
+</ul>
+<h3 id="Document节点方法有："><a href="#Document节点方法有：" class="headerlink" title="Document节点方法有："></a>Document节点方法有：</h3><h4 id="DOM的增："><a href="#DOM的增：" class="headerlink" title="DOM的增："></a>DOM的<strong>增</strong>：</h4><p>Document.createElement() // 创建元素</p>
 <p>Document.createTextNode() //创建一个新的文本节点</p>
 <p>Node.appendChild()//插入当前节点</p>
 <p>Element.classList.add() //添加指定的类值class</p>
 <p>Document.write();Document.writeIn() // 将文本字符串写入打开的文档流；document.write()和writeIn()的区别是前者没有换行，而后者有换行。但要防止异步、setTimeOut导致冲洗掉整个文档。</p>
-</li>
-</ul>
-<h3 id="DOM的删："><a href="#DOM的删：" class="headerlink" title="DOM的删："></a>DOM的<strong>删</strong>：</h3><p>  Element.removeAttribute() // 从元素中删除指定的属性</p>
-<p>  Element.removeChild(）// 删除子元素</p>
-<p>  ChildNode.remove() // 删除元素</p>
-<p>  Child.parentNode.removeChild(child) // 不确定父元素时可这样删除子元素</p>
-<p>  Element.classList.remove() // 移除元素中一个或多个类名</p>
-<h3 id="DOM的改："><a href="#DOM的改：" class="headerlink" title="DOM的改："></a>DOM的改：</h3><p>  Node.replaceChild() // 替换子节点</p>
-<p>  style.property = new style // 修改元素CSS属性值</p>
-<p>  Element.setAttribute() // 设置或者改变指定属性并指定值</p>
-<p>  Node.innerText // 修改元素文本内容</p>
-<p>  Element.innerHTML // 设置或获取描述元素后代的HTML语句</p>
-<h1 id="DOM事件模型"><a href="#DOM事件模型" class="headerlink" title="DOM事件模型"></a>DOM事件模型</h1><p>  在2000年11月，DOM标准在Level 2中加入了Events事件模型，后期的Level 3也并未对Events进行修改。</p>
-<p>  以事件监听为例：</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"xxx"</span>&gt;点击&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">xxx.addEventListener('chick',function()&#123; </span></span><br><span class="line"><span class="regexp">        alert('我被点击了')&#125;)</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/.addEventListener()方法，可以增加多次事件监听，以队列形式触发，先进先出。</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">xxx.onclick = function()&#123;</span></span><br><span class="line"><span class="regexp">  alert('我被点击了')</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/.onclick方法：属性唯一，只能有一个，多个会覆盖前面。</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.one()/</span><span class="regexp">/只执行一次，然后把自己从事件队列移除。</span></span><br></pre></td></tr></table></figure>
-<p>  DOM事件流包括三个阶段。</p>
+<h4 id="DOM的删："><a href="#DOM的删：" class="headerlink" title="DOM的删："></a>DOM的<strong>删</strong>：</h4><p>Element.removeAttribute() // 从元素中删除指定的属性</p>
+<p>Element.removeChild(）// 删除子元素</p>
+<p>ChildNode.remove() // 删除元素</p>
+<p>Child.parentNode.removeChild(child) // 不确定父元素时可这样删除子元素</p>
+<p>Element.classList.remove() // 移除元素中一个或多个类名</p>
+<h4 id="DOM的改："><a href="#DOM的改：" class="headerlink" title="DOM的改："></a>DOM的改：</h4><p>Node.replaceChild() // 替换子节点</p>
+<p>style.property = new style // 修改元素CSS属性值</p>
+<p>Element.setAttribute() // 设置或者改变指定属性并指定值</p>
+<p>Node.innerText // 修改元素文本内容</p>
+<p>Element.innerHTML // 设置或获取描述元素后代的HTML语句</p>
+<h1 id="DOM事件模型"><a href="#DOM事件模型" class="headerlink" title="DOM事件模型"></a>DOM事件模型</h1><p>在2000年11月，DOM标准在Level 2中加入了Events事件模型，后期的Level 3也并未对Events进行修改。</p>
+<p>以事件监听为例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"xxx"</span>&gt;点击&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">xxx.addEventListener('chick',function()&#123; </span></span><br><span class="line"><span class="regexp">        alert('我被点击了')&#125;)</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/.addEventListener()方法，可以增加多次事件监听，以队列形式触发，先进先出。</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">xxx.onclick = function()&#123;</span></span><br><span class="line"><span class="regexp">  alert('我被点击了')</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/.onclick方法：属性唯一，只能有一个，多个会覆盖前面。</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">.one()/</span><span class="regexp">/只执行一次，然后把自己从事件队列移除。</span></span><br></pre></td></tr></table></figure>
+<p>DOM事件流包括三个阶段。</p>
 <ol>
 <li><p>事件捕获阶段</p>
 </li>
@@ -402,21 +399,20 @@
 <p><img src="https://i.loli.net/2019/03/25/5c97f58282f39.png" alt="DOM事件流1.png" height="300px" title="DOM事件流1.png"></p>
 </li>
 </ol>
-<p>  <img src="https://i.loli.net/2019/03/25/5c97f5828c394.png" alt="DOM事件流2.png" height="300px" title="DOM事件流2.png"></p>
-<h3 id="实现一个点击弹出popover"><a href="#实现一个点击弹出popover" class="headerlink" title="实现一个点击弹出popover"></a><a href="http://js.jirengu.com/zesar/6/edit?html,js,console,output" target="_blank" rel="noopener">实现一个点击弹出popover</a></h3><p>  要求</p>
+<p><img src="https://i.loli.net/2019/03/25/5c97f5828c394.png" alt="DOM事件流2.png" height="300px" title="DOM事件流2.png"></p>
+<h3 id="实现一个点击弹出popover"><a href="#实现一个点击弹出popover" class="headerlink" title="实现一个点击弹出popover"></a><a href="http://js.jirengu.com/zesar/6/edit?html,js,console,output" target="_blank" rel="noopener">实现一个点击弹出popover</a></h3><p>要求</p>
 <ol>
 <li>点击按钮弹出浮层</li>
 <li>点击别处关闭浮层</li>
 <li>点击浮层时，浮层不得关闭</li>
-<li><p>再次点击按钮，浮层消失</p>
-<p><img src="https://i.loli.net/2019/03/25/5c97f79410c39.png" alt="点击popover.png" height="300px" title="点击popover.png"></p>
-</li>
+<li>再次点击按钮，浮层消失</li>
 </ol>
-<p>  参考文献：</p>
-<p>  <a href="https://zhuanlan.zhihu.com/p/27297443" target="_blank" rel="noopener">Javascript DOM 元素的增删改查</a></p>
-<p>  <a href="https://github.com/wojiaofengzhongzhuifeng/study/blob/master/blog/B8-DOM.md" target="_blank" rel="noopener">对 DOM 的一些理解</a></p>
-<p>  <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499851683f7f8d6b7717343248a75d5e7f930def4000" target="_blank" rel="noopener">廖雪峰-操作DOM</a></p>
-<p>  <a href="https://wangdoc.com/javascript/dom/index.html" target="_blank" rel="noopener">阮一峰教程-DOM</a></p>
+<p><img src="https://i.loli.net/2019/03/25/5c97f79410c39.png" alt="点击popover.png" height="300px" title="点击popover.png"></p>
+<p>参考文献：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/27297443" target="_blank" rel="noopener">Javascript DOM 元素的增删改查</a></p>
+<p><a href="https://github.com/wojiaofengzhongzhuifeng/study/blob/master/blog/B8-DOM.md" target="_blank" rel="noopener">对 DOM 的一些理解</a></p>
+<p><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499851683f7f8d6b7717343248a75d5e7f930def4000" target="_blank" rel="noopener">廖雪峰-操作DOM</a></p>
+<p><a href="https://wangdoc.com/javascript/dom/index.html" target="_blank" rel="noopener">阮一峰教程-DOM</a></p>
 <p>​          </p>
 
           
