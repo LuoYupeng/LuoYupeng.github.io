@@ -239,6 +239,129 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/初识TCP-IP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/26/初识TCP-IP/" itemprop="url">初识TCP/IP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T22:16:48+08:00">
+                2018-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>TCP/IP是互联网相关的各类协议族的总称。<br>TCP/IP协议族里面是按层次分为应用层、传输层、网络层和数据链路层。<br>应用层决定了向用户提供应用服务时通信的活动，例如FTP和DNS，以及HTTP协议处于应用层。<br>传输层有两个性质不同的协议：UDP和TCP。</p>
+<h1 id="TCP-IP通信传输流"><a href="#TCP-IP通信传输流" class="headerlink" title="TCP/IP通信传输流"></a>TCP/IP通信传输流</h1><p><img src="https://i.loli.net/2018/11/28/5bfd91c7b7fe5.jpg" alt="94544374.jpg" title="94544374.jpg" width="50%" heigth="50%"><br>发送端在层与层之间传输数据，每经过一层时必定会打上一个该层所属的首部信息。反之，接受端在层与层传输数据时，每经过一层会把相应的首部信息去掉。这种把数据信息包装起来的方法称为封装 <em>(encapsulate)</em>。</p>
+<h1 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h1><p>TCP位于运输层，提供可靠的字节流服务。字节流服务是指，为了方便传输，把大块数据分割成以报文段（segment）为单位的数据包，采用三次握手策略，握手过程采用TCP的标志——SYN和ACK，确保数据能够到达目标。<br><img src="https://i.loli.net/2018/11/28/5bfd91c7be861.jpg" alt="29518100.jpg" title="29518100.jpg" width="50%" heigth="50%"><br>三次握手过程。发送端首先发送一个带有SYN标志的数据包给对方，接受端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带有ACK标志的数据包，代表“握手”结束。</p>
+<h1 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h1><p>天无不散宴席，TCP连接也是同样。参与一条TCP连接的两个进程任何一方都能终止连接。<br><img src="https://i.loli.net/2018/11/28/5bfd91c7c3c25.jpg" alt="17191236.jpg" title="17191236.jpg" width="50%" heigth="50%"><br>如图所示，客户应用进程发起一个关闭连接命令，客户TCP相服务器进程发送一个含有特殊的TCP报文段，即这个特殊报文段首部的一个标志位 <code>FIN比特</code>被设置为1。<br>服务器收到该报文段后，就向对方发送一个确认报文段。<br>然和，服务器发送自己的终止报文段，其<code>FIN比特</code>被设置为1。<br>最后，该客户对这个服务器的终止报文段进行确认，并发送一个确认报文段。至此两台主机资源都被释放。<br><br><br><strong>Fighting!</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/HTTP请求和响应入门/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1018,7 +1141,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

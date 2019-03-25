@@ -239,6 +239,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/学习jQuery/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/25/学习jQuery/" itemprop="url">学习jQuery</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T22:57:33+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>jQuery的基本设计思想和主要用法，就是<strong>“选择某个网页元素，然后对其进行某种操作”</strong>。</p>
+<h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#id'</span>);$(<span class="string">'.class'</span>);$(<span class="string">'span'</span>)</span><br><span class="line">$(<span class="string">'div &gt; p'</span>) <span class="comment">//&lt;div&gt; 元素的直接子元素的所有 &lt;p&gt; 元素</span></span><br><span class="line">$(<span class="string">'div p'</span>)   <span class="comment">//&lt;div&gt; 元素的后代的所有 &lt;p&gt; 元素</span></span><br><span class="line">$(<span class="string">'span.red'</span>); <span class="comment">// 找出&lt;span class="red ..."&gt;...&lt;/span&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// $('li') 是一个伪数组的jQuery对象，&#123;</span><br><span class="line">                                   0: li,</span><br><span class="line">                                   1: li,</span><br><span class="line"> 																	 legth: 2&#125;</span><br><span class="line">它的原型（共享属性）为 jQuery.prototype</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">'xxx'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">'xxx'</span>)</span><br><span class="line"><span class="keyword">var</span> $div =$(<span class="string">'#xxx'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//$(div) 可以将 div 封装成一个 jQuery 对象，就跟 $div 一样</span></span><br><span class="line"><span class="comment">//$div[0] === div ，$div 的第一项就是 div</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//div 和 $div 的区别是：</span></span><br><span class="line"><span class="comment">//div为DOM对象，属性和方法有 childNodes firstChid nodeType 等</span></span><br><span class="line"><span class="comment">//$div为jQuery对象，属性和方法有 addClass removeClass toggleClass 等</span></span><br><span class="line"><span class="comment">//分清 DOM 和 jQuery 对象,他们都只拥有自己对象的方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="jQuery常用API"><a href="#jQuery常用API" class="headerlink" title="jQuery常用API"></a>jQuery常用API</h2><p><code>.get()</code>:通过<code>jQuery</code>对象获取一个对应的DOM元素，返回的是一个DOM对象</p>
+<p><code>.eq()</code>:返回为指定的索引的哪一个元素，返回的是一个<code>jQuery</code>对象</p>
+<p><code>addClass()</code>;<code>removeClass()</code></p>
+<p><code>.toggleClass()</code>//如果在元素中指定类名称不存在，则添加指定类名称；如果元素已经拥有指定<br>类名称，则从元素中删除指定类名称。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> $("<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>/&gt;")</span><br><span class="line">   .appendTo("div")  //将匹配的元素插入到目标元素内部的最后面</span><br><span class="line">   .addClass("test")</span><br><span class="line">   .end()</span><br><span class="line">   .addClass("test2");</span><br><span class="line">   </span><br><span class="line">//结果：</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test test2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="自制一个jQuery"><a href="#自制一个jQuery" class="headerlink" title="自制一个jQuery"></a>自制一个jQuery</h2><p><code>jQuery</code>实质上是一个构造函数，该构造函数接受一个参数，jQuery通过这个参数利用原生API找到节点，之后返回一个方法对象，该方法对象上的方法对节点进行操作(方法使用了闭包)。</p>
+<p>通过自制拥有几个简易功能的<code>jQuery</code>，来加深理解<code>jQuery</code>。</p>
+<p>要求：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="built_in">window</span>.jQuery = ???</span><br><span class="line">&gt;<span class="built_in">window</span>.$ = jQuery</span><br><span class="line">&gt;</span><br><span class="line">&gt;<span class="keyword">var</span> $div = $(<span class="string">'div'</span>)</span><br><span class="line">&gt;$div.addClass(<span class="string">'red'</span>) <span class="comment">// 可将所有 div 的 class 添加一个 red</span></span><br><span class="line">&gt;$div.setText(<span class="string">'hi'</span>) <span class="comment">// 可将所有 div 的 textContent 变为 hi</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>ⅰ. 获取元素节点,并返回一个纯净的伪数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span> (<span class="params">nodeOrSelector</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> nodes = &#123;&#125;  </span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>) &#123;</span><br><span class="line">              <span class="keyword">let</span> temp = <span class="built_in">document</span>.querySelectorAll(nodeOrSelector)</span><br><span class="line">              <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123;</span><br><span class="line">                nodes[i] = temp[i]</span><br><span class="line">              &#125;</span><br><span class="line">              nodes.length = temp.length</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nodeOrSelector <span class="keyword">instanceof</span> Node) &#123;</span><br><span class="line">              nodes = &#123;</span><br><span class="line">                <span class="number">0</span>: nodeOrSelector,</span><br><span class="line">                length: <span class="number">1</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ⅱ. 添加<code>addClass()</code>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nodes.addClass = <span class="function"><span class="keyword">function</span> (<span class="params">className</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) &#123;</span><br><span class="line">                  nodes[i].classList.add(className)</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p>ⅲ. 添加<code>setText()</code>方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nodes.Text = <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; </span><br><span class="line">              <span class="keyword">if</span>(text === <span class="literal">undefined</span>)&#123;</span><br><span class="line">                <span class="keyword">var</span> texts = []</span><br><span class="line">                <span class="keyword">for</span>(i =<span class="number">0</span>;i&lt;nodes.length; i++)&#123;</span><br><span class="line">                  texts.push(nodes[i].textContent)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> texts</span><br><span class="line">              &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;nodes.length;i++)&#123;</span><br><span class="line">                  nodes[i].textContent = text</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p>组合一起就是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span> (<span class="params">nodeOrSelector</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> nodes = &#123;&#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>) &#123;</span><br><span class="line">              <span class="keyword">let</span> temp = <span class="built_in">document</span>.querySelectorAll(nodeOrSelector)</span><br><span class="line">              <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123;</span><br><span class="line">                nodes[i] = temp[i]</span><br><span class="line">              &#125;</span><br><span class="line">              nodes.length = temp.length</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nodeOrSelector <span class="keyword">instanceof</span> Node) &#123;</span><br><span class="line">              nodes = &#123;</span><br><span class="line">                <span class="number">0</span>: nodeOrSelector,</span><br><span class="line">                length: <span class="number">1</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            nodes.addClass = <span class="function"><span class="keyword">function</span> (<span class="params">className</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++) &#123;</span><br><span class="line">                  nodes[i].classList.add(className)</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            nodes.Text = <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; </span><br><span class="line">              <span class="keyword">if</span>(text === <span class="literal">undefined</span>)&#123;</span><br><span class="line">                <span class="keyword">var</span> texts = []</span><br><span class="line">                <span class="keyword">for</span>(i =<span class="number">0</span>;i&lt;nodes.length; i++)&#123;</span><br><span class="line">                  texts.push(nodes[i].textContent)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> texts</span><br><span class="line">              &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;nodes.length;i++)&#123;</span><br><span class="line">                  nodes[i].textContent = text</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> nodes</span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
+<p>这里是实现的思路：</p>
+<p>第一版:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">node1, className</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = node1</span><br><span class="line">  node.classList.add(className)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setText</span>(<span class="params">node1, value</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = node1</span><br><span class="line">  node.innerText = value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二版:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">node1</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = node1</span><br><span class="line">  </span><br><span class="line">  node.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">className</span>)</span>&#123;</span><br><span class="line">  	node.classList.add(className)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.setText = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  	node.innerText = value    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三版: 支持输入字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">node1</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> node1 === <span class="string">"string"</span>)&#123;</span><br><span class="line">    node = <span class="built_in">document</span>.querySelector(node1)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    node = node1</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">className</span>)</span>&#123;</span><br><span class="line">  	node.classList.add(className)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.setText = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  	node.innerText = value    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第四版: 支持操作多个元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">node1</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> node1 === <span class="string">"string"</span>)&#123;</span><br><span class="line">    node = <span class="built_in">document</span>.querySelectorAll(node1)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    node = &#123;&#125;</span><br><span class="line">    node[<span class="number">0</span>] = node</span><br><span class="line">    node[<span class="string">"length"</span>] = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">className</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; node.length; i++)&#123;</span><br><span class="line">      node[i].classList.add(className)</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.setText = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; node.length; i++)&#123;</span><br><span class="line">    	node[i].innerText = value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第五版: 通过jQuery返回的是纯净的伪数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">node1</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = &#123;&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> node1 === <span class="string">"string"</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = <span class="built_in">document</span>.querySelectorAll(node1)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; temp.length; j++)&#123;</span><br><span class="line">      node[j] = temp[j]</span><br><span class="line">    &#125;</span><br><span class="line">    node[<span class="string">"length"</span>] = j</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    node = &#123;&#125;</span><br><span class="line">    node[<span class="number">0</span>] = node</span><br><span class="line">    node[<span class="string">"length"</span>] = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">className</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; node.length; i++)&#123;</span><br><span class="line">      node[i].classList.add(className)</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  node.setText = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; node.length; i++)&#123;</span><br><span class="line">    	node[i].innerText = value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/DOM学习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1689,129 +1842,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/初识TCP-IP/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LuoYupeng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大吉大利，今晚学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/初识TCP-IP/" itemprop="url">初识TCP/IP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T22:16:48+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>TCP/IP是互联网相关的各类协议族的总称。<br>TCP/IP协议族里面是按层次分为应用层、传输层、网络层和数据链路层。<br>应用层决定了向用户提供应用服务时通信的活动，例如FTP和DNS，以及HTTP协议处于应用层。<br>传输层有两个性质不同的协议：UDP和TCP。</p>
-<h1 id="TCP-IP通信传输流"><a href="#TCP-IP通信传输流" class="headerlink" title="TCP/IP通信传输流"></a>TCP/IP通信传输流</h1><p><img src="https://i.loli.net/2018/11/28/5bfd91c7b7fe5.jpg" alt="94544374.jpg" title="94544374.jpg" width="50%" heigth="50%"><br>发送端在层与层之间传输数据，每经过一层时必定会打上一个该层所属的首部信息。反之，接受端在层与层传输数据时，每经过一层会把相应的首部信息去掉。这种把数据信息包装起来的方法称为封装 <em>(encapsulate)</em>。</p>
-<h1 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h1><p>TCP位于运输层，提供可靠的字节流服务。字节流服务是指，为了方便传输，把大块数据分割成以报文段（segment）为单位的数据包，采用三次握手策略，握手过程采用TCP的标志——SYN和ACK，确保数据能够到达目标。<br><img src="https://i.loli.net/2018/11/28/5bfd91c7be861.jpg" alt="29518100.jpg" title="29518100.jpg" width="50%" heigth="50%"><br>三次握手过程。发送端首先发送一个带有SYN标志的数据包给对方，接受端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带有ACK标志的数据包，代表“握手”结束。</p>
-<h1 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h1><p>天无不散宴席，TCP连接也是同样。参与一条TCP连接的两个进程任何一方都能终止连接。<br><img src="https://i.loli.net/2018/11/28/5bfd91c7c3c25.jpg" alt="17191236.jpg" title="17191236.jpg" width="50%" heigth="50%"><br>如图所示，客户应用进程发起一个关闭连接命令，客户TCP相服务器进程发送一个含有特殊的TCP报文段，即这个特殊报文段首部的一个标志位 <code>FIN比特</code>被设置为1。<br>服务器收到该报文段后，就向对方发送一个确认报文段。<br>然和，服务器发送自己的终止报文段，其<code>FIN比特</code>被设置为1。<br>最后，该客户对这个服务器的终止报文段进行确认，并发送一个确认报文段。至此两台主机资源都被释放。<br><br><br><strong>Fighting!</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1862,7 +1892,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
