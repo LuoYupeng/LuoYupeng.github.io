@@ -239,6 +239,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/学习AJAX/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/27/学习AJAX/" itemprop="url">学习AJAX</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T15:24:52+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="AJAX是什么"><a href="#AJAX是什么" class="headerlink" title="AJAX是什么"></a>AJAX是什么</h2><p><strong>AJAX</strong>(Asynchronous JavaScript and XML)：异步的JavaScript和XML。用 JS 发起一个请求，并得到服务器返回的内容。异步请求数据，局部更新页面内容。</p>
+<h4 id="window-XMLHttpRequest"><a href="#window-XMLHttpRequest" class="headerlink" title="window.XMLHttpRequest()"></a>window.XMLHttpRequest()</h4><ol>
+<li>使用XMLHttpRequest发送请求</li>
+<li>服务器返回XML格式的字符串(XML后来用JSON替代)</li>
+<li>JS解析XML，并局部更新页面</li>
+</ol>
+<h4 id="一个简易的AJAX发请求"><a href="#一个简易的AJAX发请求" class="headerlink" title="一个简易的AJAX发请求"></a>一个简易的AJAX发请求</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>,(e) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'./xxx'</span>) <span class="comment">//配置request</span></span><br><span class="line">    request.send()   </span><br><span class="line">    request.onreadystatechange =  <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'请求响应都完毕了'</span>)</span><br><span class="line">            <span class="keyword">if</span>(request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt;= <span class="number">300</span>)&#123;</span><br><span class="line">                <span class="built_in">console</span>.log (<span class="string">'说明请求成功'</span>)               </span><br><span class="line">                <span class="keyword">let</span> string =request.responseText</span><br><span class="line">                <span class="comment">//把符合的JSON语法的字符串 转换成JS对应的值</span></span><br><span class="line">                <span class="keyword">let</span> object = <span class="built_in">window</span>.JSON.parse(string)</span><br><span class="line">             </span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (request.status &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'请求失败'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="同源策略和CORS跨域"><a href="#同源策略和CORS跨域" class="headerlink" title="同源策略和CORS跨域"></a>同源策略和CORS跨域</h4><p><img src="https://i.loli.net/2019/03/27/5c9b3a36adfa5.png" alt="同源策略.png"></p>
+<p><strong>同源策略</strong>限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。目的是为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
+<p>所谓<strong>同源</strong>是指”协议+域名+端口”三者相同。</p>
+<blockquote>
+<p>协议相同<br>域名相同<br>端口相同</p>
+</blockquote>
+<p><strong>同源策略限制内容有：</strong></p>
+<ul>
+<li>Cookie、LocalStorage、IndexedDB 等存储性内容</li>
+<li>DOM 无法获得</li>
+<li><p>AJAX 请求发送后，结果被浏览器拦截(<code>request.status = 0</code>)</p>
+<p><strong>突破同源策略</strong>：</p>
+</li>
+<li><p>JSONP</p>
+</li>
+<li>WebSocket</li>
+<li>CORS</li>
+<li>架设服务器代理</li>
+</ul>
+<p><strong>CORS跨域</strong>：(Cross-Origin Resource Sharing)服务端设置<code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;,&#39;http://(允许访问的域名)&#39;)</code>就可以开启 CORS。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。</p>
+<p><code>form表单提交</code>可以跨域是因为原页面用form提交到另外一个域名后，会自动刷新跳转另外一个域名，原来页面的脚本无法获得新页面的内容。</p>
+<h3 id="自己封装一个window-jQuery-ajax"><a href="#自己封装一个window-jQuery-ajax" class="headerlink" title="自己封装一个window.jQuery.ajax"></a>自己封装一个window.jQuery.ajax</h3><p>先自己创建个jQuery</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span> (<span class="params">nodeOrSelector</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> nodes = &#123; &#125;</span><br><span class="line">    nodes.addClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    nodes.html = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.$ = <span class="built_in">window</span>.jQuery</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第一版</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery.ajax = <span class="function"><span class="keyword">function</span> (<span class="params">url, method, body, successFn, failFn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    request.open(method,url) <span class="comment">//配置request 请求第一部分</span></span><br><span class="line">    request.onreadystatechange =  <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt;= <span class="number">300</span>)&#123;</span><br><span class="line">                successFn.call(<span class="literal">undefined</span>,request.responseText)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (request.status &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">                failFn.call(<span class="literal">undefined</span>,request)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    request.send(body)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>,(e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">window</span>.jQuery.ajax(</span><br><span class="line">        <span class="string">'./xxx'</span>,</span><br><span class="line">        <span class="string">'post'</span>,</span><br><span class="line">        <span class="string">'a=1&amp;b=2'</span>,</span><br><span class="line">        (responseText) =&gt; &#123;<span class="built_in">console</span>.log(<span class="number">1</span>)&#125;,</span><br><span class="line">        (request) =&gt; &#123;<span class="built_in">console</span>.log(<span class="number">2</span>)&#125;</span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>优化传参</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery.ajax = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//允许传两个参数</span></span><br><span class="line">    <span class="keyword">let</span> url</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">arguments</span>.length ===<span class="number">1</span>)&#123;</span><br><span class="line">        url = options.url</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">arguments</span>.length ===<span class="number">2</span>)&#123;</span><br><span class="line">        url = <span class="built_in">arguments</span>[<span class="number">0</span>]</span><br><span class="line">        options = <span class="built_in">arguments</span>[<span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> method = options.method</span><br><span class="line">    <span class="keyword">let</span> body = options.body</span><br><span class="line">    <span class="keyword">let</span> successFn = options.successFn</span><br><span class="line">    <span class="keyword">let</span> failFn = options.failFn</span><br><span class="line">    <span class="keyword">let</span> headers = options.headers</span><br><span class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    request.open(method,url) <span class="comment">//配置request 请求第一部分</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> headers)&#123; <span class="comment">//遍历设置多个header</span></span><br><span class="line">        <span class="keyword">let</span> value = headers[key]</span><br><span class="line">        request.setRequestHeader(key, value)</span><br><span class="line">    &#125;</span><br><span class="line">    request.onreadystatechange =  <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt;= <span class="number">300</span>)&#123;</span><br><span class="line">                successFn.call(<span class="literal">undefined</span>,request.responseText)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (request.status &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">                failFn.call(<span class="literal">undefined</span>,request)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    request.send(body)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>,(e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">window</span>.jQuery.ajax(&#123;</span><br><span class="line">        url: <span class="string">'./xx'</span>,</span><br><span class="line">        method: <span class="string">'get'</span>,</span><br><span class="line">        headers: &#123;</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">            <span class="string">'tom'</span>: <span class="string">'18'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        successFn: <span class="function">(<span class="params">x</span>)=&gt;</span>&#123;</span><br><span class="line">            f1.call(<span class="literal">undefined</span>,x) <span class="comment">//成功后执行两个函数function f1(responseText)&#123;&#125;；</span></span><br><span class="line">            f2.call(<span class="literal">undefined</span>,x) <span class="comment">// function f2(responseText)&#123;&#125;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        failFn: <span class="function">(<span class="params">x</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(x)</span><br><span class="line">            <span class="built_in">console</span>.log(x.status)</span><br><span class="line">            <span class="built_in">console</span>.log(x.responseText )</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>添加Promise功能</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery.ajax = <span class="function"><span class="keyword">function</span> (<span class="params">&#123;url, method, body, headers&#125;</span>) </span>&#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">        request.open(method, url) <span class="comment">//配置request 请求第一部分</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> headers) &#123; <span class="comment">//遍历设置多个header</span></span><br><span class="line">            <span class="keyword">let</span> value = headers[key]</span><br><span class="line">            request.setRequestHeader(key, value)</span><br><span class="line">        &#125;</span><br><span class="line">        request.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt;= <span class="number">300</span>) &#123;</span><br><span class="line">                    resolve.call(<span class="literal">undefined</span>, request.responseText)</span><br><span class="line"></span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (request.status &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">                    reject.call(<span class="literal">undefined</span>, request)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        request.send(body)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">myButton.addEventListener(<span class="string">'click'</span>,(e) =&gt; &#123;</span><br><span class="line">    <span class="built_in">window</span>.jQuery.ajax(&#123;</span><br><span class="line">        url: <span class="string">'./xxx'</span>,</span><br><span class="line">        method: <span class="string">'get'</span>,</span><br><span class="line">        headers: &#123;</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">            <span class="string">'tom'</span>: <span class="string">'18'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).then(</span><br><span class="line">        (text) =&gt; &#123;<span class="built_in">console</span>.log(text)&#125;,</span><br><span class="line">        (request) =&gt; &#123;<span class="built_in">console</span>.log(request)&#125;</span><br><span class="line">    )</span><br><span class="line"><span class="comment">// let promise = .... //promise.then()</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/学习JSONP/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1691,186 +1855,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/HTML常用标签/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LuoYupeng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大吉大利，今晚学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/HTML常用标签/" itemprop="url">HTML几个标签</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T22:13:45+08:00">
-                2018-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这里介绍几个HTML常用的标签：<code>&lt;iframe&gt; &lt;a&gt; &lt;form&gt; &lt;input&gt;/&lt;button&gt; &lt;table&gt;</code>。</p>
-<h1 id="lt-iframe-gt-标签"><a href="#lt-iframe-gt-标签" class="headerlink" title="&lt;iframe&gt;标签"></a><code>&lt;iframe&gt;</code>标签</h1><p><code>&lt;iframe&gt;</code> 标签规定一个内联框架。一个内联框架被用来在当前 HTML 文档中嵌入另一个文档。常用写法：<code>&lt;iframe src = &quot;https://xxx.com&quot; name= &quot;xxx&quot;&gt; &lt;/iframe&gt;</code><br>常用属性有：<br><code>name</code>iframe名称，可以用作<code>&lt;a&gt;</code>标签，<code>&lt;form&gt;</code>标签的target属性值，或<code>&lt;input&gt;</code>标签和 <code>&lt;button&gt;</code>标签的formtarget属性值；<br><code>height</code> <code>width</code> 规定高度和宽度；<br><code>frameborder = 1/0</code> 规定是否显示iframe周围边框；<br><code>sandbox</code>该属性对呈现在iframe框架中的内容启用一些额外的限制条件；<br>目前iframe标签常用在邮箱，广告上。</p>
-<h1 id="lt-a-gt-标签"><a href="#lt-a-gt-标签" class="headerlink" title="  &lt;a&gt; 标签"></a>  <code>&lt;a&gt;</code> 标签</h1><p><code>&lt;a&gt;</code>可以创建一个到其他网页、文件、同一页面内的位置、电子邮件地址或任何其他URL的超链接。<br>示例：</p>
-<blockquote>
-<p><code>&lt;a href=&quot;xxx&quot; target = &quot;yyy&quot;&gt; zzz &lt;/a&gt;</code></p>
-</blockquote>
-<p><code>&lt;a&gt;</code>标签中属性href的值:</p>
-<ol>
-<li>可以是网址，也可以是相对路径； </li>
-<li>带#前面的值，指向锚点，页面不刷新；</li>
-<li>“?xxx=yyy”，发起请求</li>
-<li>伪协议，href=”javascript: ;”，点击后，页面不做任何事情，用于一些特殊情景</li>
-</ol>
-<p><code>&lt;a&gt;</code>标签中属性target的值：<code>_self</code>默认值，在当前页面加载链接；<code>_blank</code>新窗口打开；<code>_parent</code>在父框架打开；<code>_top</code>在顶层框架打开；<code>framename</code>与iframe同时使用。<br><code>&lt;a&gt;</code>标签中属性download定义了下载链接的地址。</p>
-<h1 id="lt-form-gt-标签"><a href="#lt-form-gt-标签" class="headerlink" title="&lt;form&gt;标签"></a><code>&lt;form&gt;</code>标签</h1><p> 表单提交标签，<code>&lt;form&gt;</code> 标签通常包含一个或多个如下的表单元素：<br><code>&lt;input&gt;  &lt;textarea&gt; &lt;button&gt; &lt;select&gt; &lt;option&gt; &lt;optgroup&gt; &lt;fieldset&gt; &lt;label&gt;</code>。</p>
-<p>示例: </p>
-<blockquote>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span> =<span class="string">"users"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> =<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> =<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> =<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p> 常用属性和值的相对关系</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th style="text-align:left">值</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>mathod</td>
-<td style="text-align:left">get<br>post</td>
-<td style="text-align:left">规定用于发送表单数据的 HTTP 方法</td>
-</tr>
-<tr>
-<td>action</td>
-<td style="text-align:left">url</td>
-<td style="text-align:left">规定当提交表单时向何处发送表单数据</td>
-</tr>
-<tr>
-<td>name</td>
-<td style="text-align:left">text</td>
-<td style="text-align:left">规定表单的名称</td>
-</tr>
-</tbody>
-</table>
-<h1 id="lt-input-gt-lt-button-gt-lt-select-gt-标签"><a href="#lt-input-gt-lt-button-gt-lt-select-gt-标签" class="headerlink" title="&lt;input&gt;/&lt;button&gt;/&lt;select&gt;标签"></a><code>&lt;input&gt;/&lt;button&gt;/&lt;select&gt;</code>标签</h1><p>input与button的不同在于：button默认为submit，提交；而input默认是输入框，需要将属性type=”submit”才能提交。<br>实际使用通常用<code>&lt;lable&gt;</code>标签包裹<code>&lt;input&gt;</code>使用，示例：<br><code>&lt;label&gt;&lt;input type=&#39;radio&#39; name=&#39;fruit&#39; value=&#39;banana&#39;&gt;香蕉&lt;/label&gt;</code><br><code>&lt;label&gt;&lt;input type=&#39;radio&#39; name=&#39;fruit&#39; value=&#39;apple&#39;&gt;苹果&lt;/label&gt;</code><br>其中input属性type=radio时为单选框，type=checkbox时为复选框。<br><code>&lt;select&gt;</code>默认是单选，属性multiple为true时，为多选。示例：</p>
-<blockquote>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"group"</span> &gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">" "</span>&gt;</span> -<span class="tag">&lt;/<span class="name">option</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>第一组 <span class="tag">&lt;/<span class="name">option</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"2"</span> <span class="attr">disabled</span>&gt;</span>第二组<span class="tag">&lt;/<span class="name">option</span> &gt;</span> ##disable表示不能被选中</span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"3"</span> <span class="attr">selected</span>&gt;</span>第三组<span class="tag">&lt;/<span class="name">option</span> &gt;</span> ##selected表示默认选中 </span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span> &gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="lt-table-gt-标签"><a href="#lt-table-gt-标签" class="headerlink" title="&lt;table&gt;标签"></a><code>&lt;table&gt;</code>标签</h1><p>代码示例：</p>
-<details>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">colgroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">70</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">bgcolor</span>=<span class="string">gray</span> <span class="attr">width</span>=<span class="string">100</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">50</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">bgcolor</span>=<span class="string">red</span> <span class="attr">width</span>=<span class="string">50</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">colgroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>班级<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>分数<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>一班<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>90<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小红<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>二班<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>95<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>平均分<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span>92.5<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>总分<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>185<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p></p></details><br>效果图片：<br><img src="http://ph5zfz0ki.bkt.clouddn.com/18-10-31/76207176.jpg" width="400" height="200"><p></p>
-<p>参考文献：</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000004502619#articleHeader15" target="_blank" rel="noopener">iframe,我们来谈一谈</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list" target="_blank" rel="noopener">MDN</a></li>
-</ul>
-<p><strong>Fighting!</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1921,7 +1905,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
