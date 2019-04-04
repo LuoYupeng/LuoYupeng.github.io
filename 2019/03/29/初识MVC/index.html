@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前端的MVC是什么MVC 架构模式是指 Model-View-Controller（数据层-视图层-控制器层）模式。Model - 封装数据操作，View - 视图渲染，Controller - 控制器主要负责逻辑以及其他的。  在MVC的基础上，还衍生出了MVP模式，MVVM模式。例如MVP模式（如下图）：  MVP 模式是MVC基础上，将 Controller 改名为 Presenter。MV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识MVC">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/初识MVC/index.html">
+<meta property="og:site_name" content="大吉大利，今晚学习">
+<meta property="og:description" content="前端的MVC是什么MVC 架构模式是指 Model-View-Controller（数据层-视图层-控制器层）模式。Model - 封装数据操作，View - 视图渲染，Controller - 控制器主要负责逻辑以及其他的。  在MVC的基础上，还衍生出了MVP模式，MVVM模式。例如MVP模式（如下图）：  MVP 模式是MVC基础上，将 Controller 改名为 Presenter。MV">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015020105.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/04/5ca611a0a708f.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/04/5ca620dc931d9.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/05/5ca62eabe6f59.jpg">
+<meta property="og:updated_time" content="2019-04-04T16:59:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识MVC">
+<meta name="twitter:description" content="前端的MVC是什么MVC 架构模式是指 Model-View-Controller（数据层-视图层-控制器层）模式。Model - 封装数据操作，View - 视图渲染，Controller - 控制器主要负责逻辑以及其他的。  在MVC的基础上，还衍生出了MVP模式，MVVM模式。例如MVP模式（如下图）：  MVP 模式是MVC基础上，将 Controller 改名为 Presenter。MV">
+<meta name="twitter:image" content="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015020105.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/初识MVC/">
+
+
+
+
+
+  <title>初识MVC | 大吉大利，今晚学习</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大吉大利，今晚学习</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/初识MVC/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初识MVC</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T20:29:50+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前端的MVC是什么"><a href="#前端的MVC是什么" class="headerlink" title="前端的MVC是什么"></a>前端的MVC是什么</h3><p>MVC 架构模式是指 Model-View-Controller（数据层-视图层-控制器层）模式。<strong>Model - 封装数据操作</strong>，<strong>View - 视图渲染</strong>，<strong>Controller - 控制器主要负责逻辑以及其他的</strong>。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015020105.png" alt=""></p>
+<p>在MVC的基础上，还衍生出了MVP模式，MVVM模式。例如MVP模式（如下图）：</p>
+<p><img src="https://i.loli.net/2019/04/04/5ca611a0a708f.jpg" alt="MVP.jpg"></p>
+<p>MVP 模式是MVC基础上，将 Controller 改名为 Presenter。MVP各部分之间的通信，都是双向的，View与Model之间不直接通信。</p>
+<h3 id="MVC的尝试使用"><a href="#MVC的尝试使用" class="headerlink" title="MVC的尝试使用"></a>MVC的尝试使用</h3><h4 id="代码模块化"><a href="#代码模块化" class="headerlink" title="代码模块化"></a>代码模块化</h4><p>​    代码模块化是指，将一堆功能的代码，按照各自功能抽离到独立js文件，使用立即执行函数包裹所有代码，不暴露全局变量。</p>
+<h4 id="以创建一个留言区为例"><a href="#以创建一个留言区为例" class="headerlink" title="以创建一个留言区为例"></a>以创建一个留言区为例</h4><p><img src="https://i.loli.net/2019/04/04/5ca620dc931d9.jpg" alt="留言.jpg"></p>
+<p>HTML:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span>  <span class="attr">class</span>=<span class="string">"message"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>留言<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span> <span class="attr">id</span>=<span class="string">"messageList"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"postMessageForm"</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>姓名:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>内容:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JS:</p>
+<p>1.0版本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化LeanCloud数据库</span></span><br><span class="line"><span class="keyword">var</span> APP_ID = <span class="string">'*******************'</span>; <span class="comment">//每个LeanCloud应用的ID和KEY都是私有独立的</span></span><br><span class="line"><span class="keyword">var</span> APP_KEY = <span class="string">'************************'</span>; <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">AV.init(&#123;</span><br><span class="line">    appId: APP_ID,</span><br><span class="line">    appKey: APP_KEY</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//上传留言</span></span><br><span class="line"><span class="keyword">let</span> myForm = <span class="built_in">document</span>.querySelector(<span class="string">'#postMessageForm'</span>)</span><br><span class="line">myForm.addEventListener(<span class="string">'submit'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    <span class="keyword">let</span> content = myForm.querySelector(<span class="string">'input[name=content]'</span>).value</span><br><span class="line">    <span class="keyword">var</span> Message = AV.Object.extend(<span class="string">'Message'</span>)</span><br><span class="line">    <span class="keyword">var</span> message = <span class="keyword">new</span> Message()</span><br><span class="line">    message.save(&#123;</span><br><span class="line">        <span class="string">'content'</span> : content</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'留言成功'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在这里，采用<a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>作为我们的一个后台数据库储存数据。LeanCloud有开发版免费使用，在请求订阅低的</p>
+<p>时候，个人demo或者小项目都可以采用。</p>
+<p>1.01版本：可以从数据库读取留言并展示出来</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">'Message'</span>)</span><br><span class="line">query find() <span class="comment">//展示数据库存储的留言</span></span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">messages</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span>  array = messages.map(<span class="function">(<span class="params">item</span>)=&gt;</span> item.attributes)</span><br><span class="line">            array.forEach( <span class="function">(<span class="params">item</span>)=&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>)</span><br><span class="line">                li.innerText= item.content</span><br><span class="line">                <span class="keyword">let</span> messageList = <span class="built_in">document</span>.querySelector(<span class="string">'#messageList'</span>)</span><br><span class="line">                messageList.appendChild(<span class="string">'li'</span>)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"><span class="keyword">let</span> myForm = <span class="built_in">document</span>.querySelector(<span class="string">'#postMessageForm'</span>) <span class="comment">//点击留言功能</span></span><br><span class="line">myForm.addEventListener(<span class="string">'submit'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    <span class="keyword">let</span> content = myForm.querySelector(<span class="string">'input[name=content]'</span>).value</span><br><span class="line">    <span class="keyword">var</span> Message = AV.Object.extend(<span class="string">'Message'</span>)</span><br><span class="line">    <span class="keyword">var</span> message = <span class="keyword">new</span> Message()</span><br><span class="line">    message.save(&#123;</span><br><span class="line">        <span class="string">'content'</span> : content</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'留言成功'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>1.02版本:即时免刷新显示用户留言</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">'Message'</span>);</span><br><span class="line">query.find()  <span class="comment">//展示数据库存储的留言</span></span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">messages</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span>  array = messages.map(<span class="function">(<span class="params">item</span>)=&gt;</span> item.attributes).reverse()</span><br><span class="line">            array.forEach( <span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>)</span><br><span class="line">                li.innerText= <span class="string">`<span class="subst">$&#123;item.name&#125;</span>: <span class="subst">$&#123;item.content&#125;</span>`</span></span><br><span class="line">                <span class="keyword">let</span> messageList = <span class="built_in">document</span>.querySelector(<span class="string">'#messageList'</span>)</span><br><span class="line">                messageList.appendChild(li)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"><span class="keyword">let</span> myForm = <span class="built_in">document</span>.querySelector(<span class="string">'#postMessageForm'</span>)  <span class="comment">//点击留言功能</span></span><br><span class="line">myForm.addEventListener(<span class="string">'submit'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault()</span><br><span class="line">    <span class="keyword">let</span> content = myForm.querySelector(<span class="string">'input[name=content]'</span>).value</span><br><span class="line">    <span class="keyword">let</span> name = myForm.querySelector(<span class="string">'input[name=name]'</span>).value</span><br><span class="line">    <span class="keyword">var</span> Message = AV.Object.extend(<span class="string">'Message'</span>)</span><br><span class="line">    <span class="keyword">var</span> message = <span class="keyword">new</span> Message()</span><br><span class="line">    message.save(&#123;</span><br><span class="line">        <span class="string">'name'</span>: name,</span><br><span class="line">        <span class="string">'content'</span> : content</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123; <span class="comment">//假刷新功能，即时免刷新将用户留言展现出来</span></span><br><span class="line">        <span class="keyword">let</span> li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>)</span><br><span class="line">        li.innerText= <span class="string">`<span class="subst">$&#123;object.attributes.name&#125;</span>: <span class="subst">$&#123;object.attributes.content&#125;</span>`</span></span><br><span class="line">        <span class="keyword">let</span> messageList = <span class="built_in">document</span>.querySelector(<span class="string">'#messageList'</span>)</span><br><span class="line">        messageList.prepend(li)</span><br><span class="line">        myForm.querySelector(<span class="string">'input[name=content]'</span>).value = <span class="string">''</span> <span class="comment">//点击提交后清空留言内容</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>1.10版本：用MVC模式封装代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//MVC的M</span></span><br><span class="line">    <span class="keyword">var</span> model = &#123;</span><br><span class="line">        <span class="comment">//获取数据</span></span><br><span class="line">        init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> APP_ID = <span class="string">'4sAEIQMOAHFjjEs525eqbRHC-9Nh9j0Va'</span>;</span><br><span class="line">            <span class="keyword">var</span> APP_KEY = <span class="string">'mAiD9Kb9q74Uo9EWA8gi1fv9'</span>;</span><br><span class="line"></span><br><span class="line">            AV.init(&#123;</span><br><span class="line">                appId: APP_ID,</span><br><span class="line">                appKey: APP_KEY</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        fetch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">'Message'</span>);</span><br><span class="line">            <span class="keyword">return</span> query.find()</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//创建数据</span></span><br><span class="line">        save: <span class="function"><span class="keyword">function</span> (<span class="params">name, content</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> Message = AV.Object.extend(<span class="string">'Message'</span>)</span><br><span class="line">            <span class="keyword">var</span> message = <span class="keyword">new</span> Message();</span><br><span class="line">            <span class="keyword">return</span> message.save(&#123;</span><br><span class="line">                <span class="string">'name'</span>: name,</span><br><span class="line">                <span class="string">'content'</span>: content</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//MVC的V</span></span><br><span class="line">    <span class="keyword">var</span> view = <span class="built_in">document</span>.querySelector(<span class="string">'section.message'</span>)</span><br><span class="line">    <span class="comment">//MVC的C</span></span><br><span class="line">    <span class="keyword">var</span> controller = &#123;</span><br><span class="line">        view: <span class="literal">null</span>,</span><br><span class="line">        model: <span class="literal">null</span>,</span><br><span class="line">        messageList: <span class="literal">null</span>,</span><br><span class="line">        init: <span class="function"><span class="keyword">function</span> (<span class="params">view, model</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.view = view</span><br><span class="line">            <span class="keyword">this</span>.model = model</span><br><span class="line">            <span class="keyword">this</span>.messageList = view.querySelector(<span class="string">'#messageList'</span>)</span><br><span class="line">            <span class="keyword">this</span>.form = view.querySelector(<span class="string">'form'</span>)</span><br><span class="line">            <span class="keyword">this</span>.model.init()</span><br><span class="line">            <span class="keyword">this</span>.loadMessages()</span><br><span class="line">            <span class="keyword">this</span>.bindEvents()</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        loadMessages: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.model.fetch().then(</span><br><span class="line">                (messages) =&gt; &#123;</span><br><span class="line">                    <span class="keyword">let</span> array = messages.map(<span class="function">(<span class="params">item</span>) =&gt;</span> item.attributes).reverse()</span><br><span class="line">                    array.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                        <span class="keyword">let</span> li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>)</span><br><span class="line">                        li.innerText = <span class="string">`<span class="subst">$&#123;item.name&#125;</span>: <span class="subst">$&#123;item.content&#125;</span>`</span></span><br><span class="line">                        <span class="keyword">this</span>.messageList.appendChild(li)</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">        &#125;,</span><br><span class="line">        bindEvents: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.form.addEventListener(<span class="string">'submit'</span>,  (e)=&gt; &#123;</span><br><span class="line">                e.preventDefault()</span><br><span class="line">                <span class="keyword">this</span>.saveMessage()</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        saveMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> myForm = <span class="keyword">this</span>.form</span><br><span class="line">            <span class="keyword">let</span> content = myForm.querySelector(<span class="string">'input[name=content]'</span>).value</span><br><span class="line">            <span class="keyword">let</span> name = myForm.querySelector(<span class="string">'input[name=name]'</span>).value</span><br><span class="line">            <span class="keyword">this</span>.model.save(name, content).then(<span class="function"><span class="keyword">function</span> (<span class="params">object</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">let</span> li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>)</span><br><span class="line">                li.innerText = <span class="string">`<span class="subst">$&#123;object.attributes.name&#125;</span>: <span class="subst">$&#123;object.attributes.content&#125;</span>`</span></span><br><span class="line">                <span class="keyword">let</span> messageList = <span class="built_in">document</span>.querySelector(<span class="string">'#messageList'</span>)</span><br><span class="line">                messageList.prepend(li)</span><br><span class="line">                myForm.querySelector(<span class="string">'input[name=content]'</span>).value = <span class="string">''</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    controller.init(view, model)</span><br><span class="line">&#125;.call()</span><br></pre></td></tr></table></figure>
+<p><strong>MVC里的套路</strong>，在MVC里有一些固定的模板格式，基本遵循下图所示：</p>
+<p><img src="https://i.loli.net/2019/04/05/5ca62eabe6f59.jpg" alt="MVC格式套路.jpg"></p>
+<h4 id="面向对象编程-OOP"><a href="#面向对象编程-OOP" class="headerlink" title="面向对象编程(OOP)"></a>面向对象编程(OOP)</h4><p>当面对大型项目时，一堆的MVC，可以把MVC里面的model，view，controller各自提取出一个模板(函数)封装起来，把需要修改的地方作为参数传进去。</p>
+<p>wiki解释：</p>
+<blockquote>
+<p><strong>面向对象程序设计</strong>（英语：Object-oriented programming，<a href="https://zh.wikipedia.org/wiki/%E7%BC%A9%E5%86%99" target="_blank" rel="noopener">缩写</a>：OOP）是种具有<a href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E8%B1%A1_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">对象</a>)概念的<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B" target="_blank" rel="noopener">程序编程典范</a>，同时也是一种程序开发的抽象方针。它可能包含<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener">数据</a>、<a href="https://zh.wikipedia.org/w/index.php?title=%E5%B1%9E%E6%80%A7_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">属性</a>&amp;action=edit&amp;redlink=1)、<a href="https://zh.wikipedia.org/wiki/%E6%BA%90%E4%BB%A3%E7%A0%81" target="_blank" rel="noopener">代码</a>与<a href="https://zh.wikipedia.org/wiki/%E6%96%B9%E6%B3%95_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8" target="_blank" rel="noopener">方法</a>)。对象则指的是<a href="https://zh.wikipedia.org/wiki/%E7%B1%BB_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">类</a>)的实例。它将<a href="https://zh.wikipedia.org/wiki/%E7%89%A9%E4%BB%B6_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8" target="_blank" rel="noopener">对象</a>)作为<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">程序</a>的基本单元，将程序和<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener">数据</a><a href="https://zh.wikipedia.org/wiki/%E5%B0%81%E8%A3%9D_(%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88" target="_blank" rel="noopener">封装</a>)其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
+</blockquote>
+<p>MDN上给了一堆术语：</p>
+<blockquote>
+<ul>
+<li><p>Namespace 命名空间</p>
+<p>允许开发人员在一个独特，应用相关的名字的名称下捆绑所有功能的容器。</p>
+</li>
+<li><p>Class 类</p>
+<p>定义对象的特征。它是对象的属性和方法的模板定义。</p>
+</li>
+<li><p>Object 对象</p>
+<p>类的一个实例。</p>
+</li>
+<li><p>Property 属性</p>
+<p>对象的特征，比如颜色。</p>
+</li>
+<li><p>Method 方法</p>
+<p>对象的能力，比如行走。</p>
+</li>
+<li><p>Constructor 构造函数</p>
+<p>对象初始化的瞬间，被调用的方法。通常它的名字与包含它的类一致。</p>
+</li>
+<li><p>Inheritance 继承</p>
+<p>一个类可以继承另一个类的特征。</p>
+</li>
+<li><p>Encapsulation 封装</p>
+<p>一种把数据和相关的方法绑定在一起使用的方法。</p>
+</li>
+<li><p>Abstraction 抽象</p>
+<p>结合复杂的继承，方法，属性的对象能够模拟现实的模型。</p>
+</li>
+<li><p>Polymorphism 多态</p>
+<p>多意为「许多」，态意为「形态」。不同类可以定义相同的方法或属性。</p>
+</li>
+</ul>
+</blockquote>
+<p>我们在写代码时，当完成了一个需求后，我们就需要对我们的代码中不断地进行解耦、抽象抽离、封装接口，将重复的代码、功能性的代码进行封装，“为变化服务”！</p>
+<p><strong>参考文章：</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="noopener">MVC，MVP 和 MVVM 的图示</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/22943208" target="_blank" rel="noopener">每日一题」MVC 是什么？</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/学习AJAX/" rel="next" title="学习AJAX">
+                <i class="fa fa-chevron-left"></i> 学习AJAX
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LuoYupeng</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前端的MVC是什么"><span class="nav-number">1.</span> <span class="nav-text">前端的MVC是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC的尝试使用"><span class="nav-number">2.</span> <span class="nav-text">MVC的尝试使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码模块化"><span class="nav-number">2.1.</span> <span class="nav-text">代码模块化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以创建一个留言区为例"><span class="nav-number">2.2.</span> <span class="nav-text">以创建一个留言区为例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象编程-OOP"><span class="nav-number">2.3.</span> <span class="nav-text">面向对象编程(OOP)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LuoYupeng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
