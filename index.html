@@ -239,6 +239,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/this-new和构造函数/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/05/this-new和构造函数/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-05T21:22:07+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h2><h3 id="函数的call-apply-bind区别"><a href="#函数的call-apply-bind区别" class="headerlink" title="函数的call,apply.bind区别"></a>函数的call,apply.bind区别</h3><ol>
+<li><p>call()：调用一个函数, 其具有一个指定的this值和分别地提供的参数(参数的列表)。<br><code>fun.call(thisArg, arg1, arg2, ...)</code></p>
+</li>
+<li><p>apply()：调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。<br><code>fun.apply(thisArg, [argsArray])</code></p>
+<p><strong>call()方法的作用和 apply() 方法类似，区别就是call()方法接受的是参数列表，而apply()方法接受的是一个参数数组。</strong></p>
+</li>
+<li><p>bind()：（创建）返回一个新函数，并且是函数内部this为传入的第一个参数。<br><code>fun.bind(thisArg[, arg1[, arg2[, ...]]]);</code><br><strong>bind是返回对应的函数，便于稍后调用。apply、call 则是立即调用。</strong></p>
+</li>
+</ol>
+<h3 id="实际中使用函数的this"><a href="#实际中使用函数的this" class="headerlink" title="实际中使用函数的this"></a>实际中使用函数的this</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">btn.addEventListener(<span class="string">'click'</span> ,<span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// 请问这里的 this 是什么</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$ul.on(<span class="string">'click'</span>, <span class="string">'li'</span> , <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// 请问这里的 this 又是什么</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在上面两例中，我们要弄清楚<code>this</code>是什么，应该去看源码，或者看文档，千万不要瞎猜，想当然的认为this指向就是谁。</p>
+<blockquote>
+<p>当一个函数被调用时，拥有它的object会作为this传入。在global下，就是window or global，其他时候就是相应的object。</p>
+<p>出现在函数嵌套里时，函数里面嵌套的函数是属于哪个object的，this就是哪个object，如果没有就是window。</p>
+</blockquote>
+<p>摒弃语法糖，func()转化为func.call(undefined,arg1,arg2)</p>
+<blockquote>
+<p>func(p1, p2) 等价于<br>func.call(undefined, p1, p2)</p>
+<p>obj.child.method(p1, p2) 等价于<br>obj.child.method.call(obj.child, p1, p2)</p>
+</blockquote>
+<p>箭头函数中</p>
+<blockquote>
+<p><strong>箭头函数只能用赋值式写法，不能用声明式写法</strong></p>
+<p><strong>默认绑定外层this，不能用call方法修改里面的this。</strong></p>
+</blockquote>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">X</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> object = &#123;</span><br><span class="line">    name: <span class="string">'object'</span>,</span><br><span class="line">    options: bull,</span><br><span class="line">    f1(x)&#123;</span><br><span class="line">      <span class="keyword">this</span>.options = x</span><br><span class="line">      <span class="keyword">this</span>.f2()</span><br><span class="line">    &#125;,</span><br><span class="line">    f2()&#123;</span><br><span class="line">      <span class="keyword">this</span>.options.f2.call(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  name: <span class="string">'options'</span>,</span><br><span class="line">  f1()&#123;&#125;,</span><br><span class="line">  f2()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)  <span class="comment">//this是啥？//结果是object</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = X()</span><br><span class="line">x.f1(options)</span><br><span class="line"></span><br><span class="line"><span class="comment">//由于X()就是object，x.f1(options)相当于object.f1.call(object,options)</span></span><br><span class="line"><span class="comment">//进入到f1(x)&#123;&#125;这里，这里的x是参数也就是options，f1(options)&#123;&#125;里的this是object</span></span><br><span class="line"><span class="comment">//this.f2()→object.f2();this.options =x 也就是options</span></span><br><span class="line"><span class="comment">//相当于options.f2.call(object)</span></span><br></pre></td></tr></table></figure>
+<h3 id="new和构造函数"><a href="#new和构造函数" class="headerlink" title="new和构造函数"></a>new和构造函数</h3><p>以游戏中，大批量创造小兵为例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 小兵 = &#123;</span><br><span class="line">  ID: <span class="number">1</span>, <span class="comment">//区别每个士兵</span></span><br><span class="line">  power: <span class="number">5</span>, <span class="comment">//攻击力</span></span><br><span class="line">  life: <span class="number">50</span>, <span class="comment">//生命值</span></span><br><span class="line">  run: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*奔跑的代码*/</span>&#125;</span><br><span class="line">  attack: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*攻击的代码*/</span>&#125;</span><br><span class="line">  died: functong()&#123;<span class="comment">/*死亡的代码*/</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> 小兵<span class="number">2</span> = &#123; ... &#125;</span><br><span class="line"><span class="keyword">var</span> 小兵<span class="number">3</span> = &#123; ... &#125;</span><br><span class="line">兵营.制造(小兵)</span><br><span class="line">兵营.制造(小兵<span class="number">2</span>)</span><br><span class="line">兵营.制造(小兵<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>当需要大批量成千上百制造小兵时，可以用一个for循环。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 小兵们 = []</span><br><span class="line"><span class="keyword">var</span> 小兵</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">  小兵 = &#123;</span><br><span class="line">    ID: i,</span><br><span class="line">    <span class="comment">/* 其余奔跑，攻击，死亡等代码 */</span></span><br><span class="line">  &#125;</span><br><span class="line">  小兵们.push(小兵)</span><br><span class="line">&#125;</span><br><span class="line">兵营.批量制造(小兵们)</span><br></pre></td></tr></table></figure>
+<p>但使用For循环时，每一个士兵中的奔跑代码，攻击代码等是一模一样，但是都会占用内存，这样就会使占用内存非常大。</p>
+<p>引入原型链改进：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 小兵共有属性 = &#123;</span><br><span class="line">  兵种: <span class="string">'无名小卒'</span>,</span><br><span class="line">  power: <span class="number">5</span>, <span class="comment">//攻击力</span></span><br><span class="line">  run: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*奔跑的代码*/</span>&#125;</span><br><span class="line">  attack: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*攻击的代码*/</span>&#125;</span><br><span class="line">  died: functong()&#123;<span class="comment">/*死亡的代码*/</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> 小兵们= []</span><br><span class="line"><span class="keyword">var</span> 小兵</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">  小兵 = &#123;</span><br><span class="line">    ID: i,</span><br><span class="line">    life: <span class="number">50</span></span><br><span class="line">  &#125;</span><br><span class="line">  小兵.__proto__ =小兵共有属性</span><br><span class="line">  小兵们.push(小兵)</span><br><span class="line">&#125;</span><br><span class="line">兵营.批量制造(小兵们)</span><br></pre></td></tr></table></figure>
+<p>再优化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//制造小兵</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>小兵(<span class="params">id</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> 小兵 = &#123;</span><br><span class="line">    ID: i,</span><br><span class="line">    life: <span class="number">50</span></span><br><span class="line">  &#125;</span><br><span class="line">  小兵.__proto__ = create小兵.小兵共有属性</span><br><span class="line">  <span class="keyword">return</span> 小兵</span><br><span class="line">&#125;</span><br><span class="line">create小兵.小兵共有属性 = &#123;</span><br><span class="line">  兵种: <span class="string">'无名小卒'</span>,</span><br><span class="line">  power: <span class="number">5</span>, <span class="comment">//攻击力</span></span><br><span class="line">  run: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*奔跑的代码*/</span>&#125;</span><br><span class="line">  attack: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*攻击的代码*/</span>&#125;</span><br><span class="line">  died: functong()&#123;<span class="comment">/*死亡的代码*/</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用生产小兵，使用与制造分开</span></span><br><span class="line"><span class="keyword">var</span> 小兵们 = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">  小兵们.push(create小兵(i))</span><br><span class="line">&#125;</span><br><span class="line">兵营.批量制造(小兵们)</span><br></pre></td></tr></table></figure>
+<h4 id="new的出现："><a href="#new的出现：" class="headerlink" title="new的出现："></a>new的出现：</h4><p><img src="https://i.loli.net/2019/04/06/5ca78d66ec25f.jpg" alt="new.jpg"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//制造小兵</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> 小兵(<span class="params">id</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//var temp = &#123;&#125;  //new的作用省略了4步注释的代码 //1</span></span><br><span class="line">  <span class="comment">//this = temp                            //2</span></span><br><span class="line">  <span class="comment">//this.__proto__ = create小兵.prototype   //3</span></span><br><span class="line">  <span class="comment">//create小兵.prototype = &#123;constructor: 小兵&#125; //5</span></span><br><span class="line">   <span class="keyword">this</span>.ID = id, <span class="comment">//自有属性</span></span><br><span class="line">   <span class="keyword">this</span>.生命值 = <span class="number">50</span> <span class="comment">//自有属性</span></span><br><span class="line">  <span class="comment">//return this                            //4</span></span><br><span class="line">&#125;</span><br><span class="line">小兵.prototype = &#123;</span><br><span class="line">  <span class="comment">//共有属性</span></span><br><span class="line">  <span class="keyword">constructor</span>: 小兵, //记录由谁构造(构造函数)，直接对prototype赋值会覆盖掉上面第5步内容需要重新</span><br><span class="line">  兵种: '无名小卒',                          //需要重新对<span class="keyword">constructor</span>赋值</span><br><span class="line">  power: 5, //攻击力</span><br><span class="line">  run: function()&#123;<span class="comment">/*奔跑的代码*/</span>&#125;</span><br><span class="line">  attack: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*攻击的代码*/</span>&#125;</span><br><span class="line">  died: functong()&#123;<span class="comment">/*死亡的代码*/</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用生产小兵，使用与制造分开</span></span><br><span class="line"><span class="keyword">var</span> 小兵们 = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">  小兵们.push( <span class="keyword">new</span> 小兵(i))</span><br><span class="line">&#125;</span><br><span class="line">兵营.批量制造(小兵们)</span><br></pre></td></tr></table></figure>
+<p>直接重写prototype是比较危险的做法，建议的用法是将共有属性添加进prototype。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">小兵.prototype.兵种 = <span class="string">'无名小卒'</span></span><br><span class="line">小兵.prototype.power = <span class="number">5</span></span><br><span class="line"><span class="comment">//依次类推</span></span><br></pre></td></tr></table></figure>
+<p><strong>new小结</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> object = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line"><span class="comment">//自有属性空</span></span><br><span class="line"><span class="comment">//object.__proto__ === Object.prototype</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> array = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br><span class="line"><span class="comment">//自有属性0:'a',1:'b',2:'c',length: 3</span></span><br><span class="line"><span class="comment">//array.__proto__ === Array.prototype</span></span><br><span class="line"><span class="comment">//Array.prototype.__protot__ === Object.prototype</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'renturn x+y'</span>)</span><br><span class="line"><span class="comment">//自有属性 length:2,不可见函数体:'return x+y'</span></span><br><span class="line"><span class="comment">//fn.__proto__ === Function.prototype</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span> is  a <span class="function"><span class="keyword">function</span></span></span><br><span class="line"><span class="function"><span class="title">Array</span> = <span class="title">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="built_in">Array</span>.__proto__ === <span class="built_in">Function</span>.prototype</span><br></pre></td></tr></table></figure>
+<h2 id="参考引用："><a href="#参考引用：" class="headerlink" title="参考引用："></a>参考引用：</h2><p><a href="https://zhuanlan.zhihu.com/p/24107744" target="_blank" rel="noopener">JavaScript 中的 this</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">this 的值到底是什么？一次说清楚</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/23987456" target="_blank" rel="noopener">JS 的 new 到底是干什么的？</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/初识MVC/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1731,167 +1895,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/JS里的数据类型/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LuoYupeng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大吉大利，今晚学习">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/18/JS里的数据类型/" itemprop="url">简述JS里的数据类型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T01:35:39+08:00">
-                2018-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>JavaScript中的数据类型有：</p>
-<p>   基本类型：Number，String，Boolean，Null，Undefined；</p>
-<p>   复杂类型：Object；</p>
-<p>   ES6中，新增了Symbol。</p>
-<p>1、Number类型</p>
-<p>根据ECMAScript标准，JS内部中是以64位浮点数形式存储数字，此外还有一些值：<code>+Infinity</code>；<code>-Infinity</code>；<code>NaN</code>。</p>
-<p>由于浮点数不是精确的值，所以涉及到小数运算时要注意，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> === <span class="number">0.3</span></span><br><span class="line"><span class="comment">// false，实际是等于0.30000000000000004</span></span><br></pre></td></tr></table></figure>
-<p>JS的数值有多种表示方法，可以直接用字面形式表示，例如0b11（二进制）；21（十进制）；011（八进制）；0x11（十六进制）。数值也可以采用科学计数方法表示，例如<code>123e3 //表示123000</code>；<code>123e-3 //表示0.123</code>。</p>
-<p><code>NaN</code>表示“非数字”（Not a Number），主要出现在将字符串解析成数字出错的场合。需要注意的是<code>NaN === NaN // false</code>。</p>
-<p>与数值相关的方法有：</p>
-<ul>
-<li>parseInt()方法：用于将字符串转为整数。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回<code>NaN</code>。<code>parseInt</code>方法还可以接受第二个参数（2到36之间），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，<code>parseInt</code>的第二个参数为10，即默认是十进制转十进制。</li>
-<li>parseFloat()方法：用于将一个字符串转为浮点数。此方法会自动过滤字符串前导的空格，如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回<code>NaN</code>。</li>
-</ul>
-<p>2、String类型</p>
-<p>由于历史原因，JavaScript引擎不能自动识别编号大于0xFFFF的Unicode字符，JS允许在程序中使用Unicode编号表示字符，写成\uxxxx的形式，例如’\u00A9’ 表示 “©”。</p>
-<p>在一些情景中，常用到转义符<code>\</code>来表示特殊符号。在表示多行字符串时，建议这样使用：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">'1234'</span>+</span><br><span class="line">    <span class="string">'5678'</span></span><br><span class="line"><span class="comment">//s1 === '1234568'</span></span><br><span class="line">ES6下：</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="string">`1234</span></span><br><span class="line"><span class="string">5678`</span></span><br><span class="line"><span class="comment">//"1234↵5678" 此处有一个回车符不能省略</span></span><br></pre></td></tr></table></figure>
-<p>3、Null类型和Undefined类型</p>
-<p>两者都可以表示为“没有”，使用可区分于：有一个对象obj，但现在不想给值，用null；有一个非对象，不想给值，用undefined。</p>
-<p>4、Boolean类型</p>
-<p>布尔值代表“真”和“假”两个状态，真用<code>ture</code>表示，假用<code>false</code>表示。布尔值只有这两个值。</p>
-<p>下列运算符会返回布尔值：</p>
-<ul>
-<li>前置逻辑运算符： <code>!</code> (Not)</li>
-<li>相等运算符：<code>===</code>，<code>!==</code>，<code>==</code>，<code>!=</code></li>
-<li>比较运算符：<code>&gt;</code>，<code>&gt;=</code>，<code>&lt;</code>，<code>&lt;=</code></li>
-</ul>
-<p>JS中只有以下六个值会被转为<code>false</code>：<code>undefined</code>;<code>null</code>;<code>false</code>;<code>0</code>;<code>NaN</code>;<code>&quot;&quot;</code>或<code>&#39;&#39;</code>(空字符串)。</p>
-<p>5、Object类型</p>
-<p>简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。对象是一个复杂类型，由简单类型组成。</p>
-<p>创建一个对象的方法可以有</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  <span class="keyword">var</span> o1 = &#123;&#125;; </span><br><span class="line"><span class="number">2.</span>  <span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="built_in">Object</span>(); </span><br><span class="line"><span class="number">3.</span>  <span class="keyword">var</span> o3 = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype);</span><br></pre></td></tr></table></figure>
-<p>如果想知道一个变量a是否已经声明过，可以用<code>if(&#39;a&#39;  in window){...}</code>检测。</p>
-<p>对象的属性的删除方法<code>delete</code>，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = &#123; <span class="attr">name</span> : <span class="string">'Jack'</span>&#125;</span><br><span class="line"></span><br><span class="line">p.name === p[<span class="string">'name'</span>]  <span class="comment">//取value值</span></span><br><span class="line"></span><br><span class="line">p[<span class="string">'name'</span>] = <span class="literal">undefined</span> </span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> p        <span class="comment">// true，只是把name值变成了变成了undefined，但name这个key仍然存在</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p[<span class="string">'name'</span>]   <span class="comment">//同时删除key-value；</span></span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> p        <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<p><code>for...in</code>循环是用来遍历对象，会跳过不可遍历的 key，不仅遍历对象自身的属性，还遍历继承的属性。</p>
-<p>一般情况下，都是只想遍历对象自身的属性，所以使用<code>for...in</code>的时候，应该结合使用<code>hasOwnProperty</code>方法，在循环内部判断一下，某个属性是否为对象自身的属性。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">  <span class="keyword">if</span> (person.hasOwnProperty(key)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>参考文献：</p>
-<p>1.<a href="https://wangdoc.com/javascript/types/index.html" target="_blank" rel="noopener">阮一峰JavaScript教程</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1942,7 +1945,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

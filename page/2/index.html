@@ -239,6 +239,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/JS里的数据类型/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LuoYupeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大吉大利，今晚学习">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/18/JS里的数据类型/" itemprop="url">简述JS里的数据类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T01:35:39+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JavaScript中的数据类型有：</p>
+<p>   基本类型：Number，String，Boolean，Null，Undefined；</p>
+<p>   复杂类型：Object；</p>
+<p>   ES6中，新增了Symbol。</p>
+<p>1、Number类型</p>
+<p>根据ECMAScript标准，JS内部中是以64位浮点数形式存储数字，此外还有一些值：<code>+Infinity</code>；<code>-Infinity</code>；<code>NaN</code>。</p>
+<p>由于浮点数不是精确的值，所以涉及到小数运算时要注意，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> === <span class="number">0.3</span></span><br><span class="line"><span class="comment">// false，实际是等于0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+<p>JS的数值有多种表示方法，可以直接用字面形式表示，例如0b11（二进制）；21（十进制）；011（八进制）；0x11（十六进制）。数值也可以采用科学计数方法表示，例如<code>123e3 //表示123000</code>；<code>123e-3 //表示0.123</code>。</p>
+<p><code>NaN</code>表示“非数字”（Not a Number），主要出现在将字符串解析成数字出错的场合。需要注意的是<code>NaN === NaN // false</code>。</p>
+<p>与数值相关的方法有：</p>
+<ul>
+<li>parseInt()方法：用于将字符串转为整数。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回<code>NaN</code>。<code>parseInt</code>方法还可以接受第二个参数（2到36之间），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，<code>parseInt</code>的第二个参数为10，即默认是十进制转十进制。</li>
+<li>parseFloat()方法：用于将一个字符串转为浮点数。此方法会自动过滤字符串前导的空格，如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回<code>NaN</code>。</li>
+</ul>
+<p>2、String类型</p>
+<p>由于历史原因，JavaScript引擎不能自动识别编号大于0xFFFF的Unicode字符，JS允许在程序中使用Unicode编号表示字符，写成\uxxxx的形式，例如’\u00A9’ 表示 “©”。</p>
+<p>在一些情景中，常用到转义符<code>\</code>来表示特殊符号。在表示多行字符串时，建议这样使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">'1234'</span>+</span><br><span class="line">    <span class="string">'5678'</span></span><br><span class="line"><span class="comment">//s1 === '1234568'</span></span><br><span class="line">ES6下：</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="string">`1234</span></span><br><span class="line"><span class="string">5678`</span></span><br><span class="line"><span class="comment">//"1234↵5678" 此处有一个回车符不能省略</span></span><br></pre></td></tr></table></figure>
+<p>3、Null类型和Undefined类型</p>
+<p>两者都可以表示为“没有”，使用可区分于：有一个对象obj，但现在不想给值，用null；有一个非对象，不想给值，用undefined。</p>
+<p>4、Boolean类型</p>
+<p>布尔值代表“真”和“假”两个状态，真用<code>ture</code>表示，假用<code>false</code>表示。布尔值只有这两个值。</p>
+<p>下列运算符会返回布尔值：</p>
+<ul>
+<li>前置逻辑运算符： <code>!</code> (Not)</li>
+<li>相等运算符：<code>===</code>，<code>!==</code>，<code>==</code>，<code>!=</code></li>
+<li>比较运算符：<code>&gt;</code>，<code>&gt;=</code>，<code>&lt;</code>，<code>&lt;=</code></li>
+</ul>
+<p>JS中只有以下六个值会被转为<code>false</code>：<code>undefined</code>;<code>null</code>;<code>false</code>;<code>0</code>;<code>NaN</code>;<code>&quot;&quot;</code>或<code>&#39;&#39;</code>(空字符串)。</p>
+<p>5、Object类型</p>
+<p>简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。对象是一个复杂类型，由简单类型组成。</p>
+<p>创建一个对象的方法可以有</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  <span class="keyword">var</span> o1 = &#123;&#125;; </span><br><span class="line"><span class="number">2.</span>  <span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="built_in">Object</span>(); </span><br><span class="line"><span class="number">3.</span>  <span class="keyword">var</span> o3 = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype);</span><br></pre></td></tr></table></figure>
+<p>如果想知道一个变量a是否已经声明过，可以用<code>if(&#39;a&#39;  in window){...}</code>检测。</p>
+<p>对象的属性的删除方法<code>delete</code>，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = &#123; <span class="attr">name</span> : <span class="string">'Jack'</span>&#125;</span><br><span class="line"></span><br><span class="line">p.name === p[<span class="string">'name'</span>]  <span class="comment">//取value值</span></span><br><span class="line"></span><br><span class="line">p[<span class="string">'name'</span>] = <span class="literal">undefined</span> </span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> p        <span class="comment">// true，只是把name值变成了变成了undefined，但name这个key仍然存在</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p[<span class="string">'name'</span>]   <span class="comment">//同时删除key-value；</span></span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> p        <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p><code>for...in</code>循环是用来遍历对象，会跳过不可遍历的 key，不仅遍历对象自身的属性，还遍历继承的属性。</p>
+<p>一般情况下，都是只想遍历对象自身的属性，所以使用<code>for...in</code>的时候，应该结合使用<code>hasOwnProperty</code>方法，在循环内部判断一下，某个属性是否为对象自身的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">  <span class="keyword">if</span> (person.hasOwnProperty(key)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>参考文献：</p>
+<p>1.<a href="https://wangdoc.com/javascript/types/index.html" target="_blank" rel="noopener">阮一峰JavaScript教程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/CSS居中的几种方式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1590,7 +1751,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
